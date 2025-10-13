@@ -1,0 +1,46 @@
+{
+  "name": "contractor-timesheet",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-buyers": "cds watch --open com.contractor.buyers.buyers/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-suppliers": "cds watch --open com.contractor.suppliers.suppliers/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-projects": "cds watch --open com.contractor.projects.projects/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-contractor_req": "cds watch --open com.contractor.request.contractorreq/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-workers": "cds watch --open com.contractor.worker.workers/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-manager_dashboard": "cds watch --open com.contractor.managerdashboard.managerdashboard/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praveenEuser/contractor_timesheet_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/praveenEuser/contractor_timesheet_app/issues"
+  },
+  "homepage": "https://github.com/praveenEuser/contractor_timesheet_app#readme",
+  "cds": {},
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/buyers",
+    "app/suppliers",
+    "app/projects",
+    "app/contractor_req",
+    "app/workers"
+  ]
+}

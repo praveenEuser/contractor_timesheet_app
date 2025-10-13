@@ -7,4 +7,6 @@ service ManagerService @(path : 'Manager_Service') {
     entity ContractorProfiles as projection on ct.ContractorProfile;
     entity TimesheetEntries as projection on ct.TimesheetEntry;
     entity Suppliers as projection on ct.Supplier;
+    entity Workers as projection on ct.Worker;
+
 }

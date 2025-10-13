@@ -39,7 +39,7 @@ entity ContractorRequest {
     status: String enum { Open; Submitted; Fulfilled; Cancelled };
 
     // Subtasks
-    subtasks: Association to many Subtask;
+    subtasks: Association to many Subtask on subtasks.contractorRequest.ID = ID;
 }
 
 entity Subtask {
