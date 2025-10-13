@@ -1,0 +1,245 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "projects.projectsarea",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:ovp",
+      "version": "1.19.1",
+      "toolsId": "1ec8034a-a24e-48db-81e1-a39092f5d5b4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/Manager_Service/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Manager_Dashboard-manager": {
+          "semanticObject": "Manager_Dashboard",
+          "action": "manager",
+          "title": "{{Manager_Dashboard-manager.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.141.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.ovp": {},
+        "sap.ui.rta": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "projects.projectsarea.i18n.i18n"
+        }
+      },
+      "mainModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "projects.projectsarea.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "bypassed": {
+          "target": "notFound"
+        }
+      },
+      "routes": [
+        {
+          "pattern": "projects",
+          "name": "ProjectsListRoute",
+          "target": "ProjectsList"
+        },
+        {
+          "pattern": "buyers",
+          "name": "BuyersListRoute",
+          "target": "BuyersList"
+        },
+        {
+          "pattern": "suppliers",
+          "name": "SuppliersListRoute",
+          "target": "SuppliersList"
+        },
+        {
+          "pattern": "contractorRequests",
+          "name": "ContractorRequestsListRoute",
+          "target": "ContractorRequestsList"
+        },
+        {
+          "pattern": "workers",
+          "name": "WorkersListRoute",
+          "target": "WorkersList"
+        }
+      ],
+      "targets": {
+        "ProjectsList": {
+          "viewName": "ProjectsList",
+          "viewLevel": 1
+        },
+        "BuyersList": {
+          "viewName": "BuyersList",
+          "viewLevel": 1
+        },
+        "SuppliersList": {
+          "viewName": "SuppliersList",
+          "viewLevel": 1
+        },
+        "ContractorRequestsList": {
+          "viewName": "ContractorRequestsList",
+          "viewLevel": 1
+        },
+        "WorkersList": {
+          "viewName": "WorkersList",
+          "viewLevel": 1
+        }
+      }
+    }
+  },
+  "sap.ovp": {
+    "globalFilterModel": "mainModel",
+    "globalFilterEntitySet": "Projects",
+    "containerLayout": "resizable",
+    "enableLiveFilter": true,
+    "considerAnalyticalParameters": false,
+    "globalFilterControlType": "MacroFilterBar",
+    "cards": {
+      "projectsCard": {
+        "template": "sap.ovp.cards.list",
+        "settings": {
+          "title": "Projects",
+          "entitySet": "Projects",
+          "listType": "Analytical",
+          "selectionAnnotationPath": "@UI.selectionFields",
+          "navigation": {
+            "route": "ProjectsListRoute"
+          }
+        }
+      },
+      "buyersCard": {
+        "template": "sap.ovp.cards.list",
+        "settings": {
+          "title": "Buyers",
+          "entitySet": "Buyers",
+          "listType": "Analytical",
+          "selectionAnnotationPath": "@UI.selectionFields",
+          "navigation": {
+            "route": "BuyersListRoute"
+          }
+        }
+      },
+      "suppliersCard": {
+        "template": "sap.ovp.cards.list",
+        "settings": {
+          "title": "Suppliers",
+          "entitySet": "Suppliers",
+          "listType": "Analytical",
+          "selectionAnnotationPath": "@UI.selectionFields",
+          "navigation": {
+            "route": "SuppliersListRoute"
+          }
+        }
+      },
+      "contractorRequestsCard": {
+        "template": "sap.ovp.cards.list",
+        "settings": {
+          "title": "Contractor Requests",
+          "entitySet": "ContractorRequests",
+          "listType": "Analytical",
+          "selectionAnnotationPath": "@UI.selectionFields",
+          "navigation": {
+            "route": "ContractorRequestsListRoute"
+          },
+          "actions": [
+            {
+              "text": "Approve",
+              "press": "onApproveRequest"
+            },
+            {
+              "text": "Reject",
+              "press": "onRejectRequest"
+            }
+          ]
+        }
+      },
+      "workersCard": {
+        "template": "sap.ovp.cards.list",
+        "settings": {
+          "title": "Workers",
+          "entitySet": "Workers",
+          "listType": "Analytical",
+          "selectionAnnotationPath": "@UI.selectionFields",
+          "navigation": {
+            "route": "WorkersListRoute"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "analytical"
+  }
+}
