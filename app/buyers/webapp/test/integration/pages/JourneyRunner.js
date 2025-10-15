@@ -1,15 +1,15 @@
 sap.ui.define([
     "sap/fe/test/JourneyRunner",
-	"com/contractor/buyers/buyers/test/integration/pages/BuyersList",
-	"com/contractor/buyers/buyers/test/integration/pages/BuyersObjectPage"
-], function (JourneyRunner, BuyersList, BuyersObjectPage) {
+	"com/contractor/suppliers/buyers/test/integration/pages/BuyerEntityList",
+	"com/contractor/suppliers/buyers/test/integration/pages/BuyerEntityObjectPage"
+], function (JourneyRunner, BuyerEntityList, BuyerEntityObjectPage) {
     'use strict';
 
     var runner = new JourneyRunner({
-        launchUrl: sap.ui.require.toUrl('com/contractor/buyers/buyers') + '/test/flp.html#app-preview',
+        launchUrl: sap.ui.require.toUrl('com/contractor/suppliers/buyers') + '/test/flp.html#app-preview',
         pages: {
-			onTheBuyersList: BuyersList,
-			onTheBuyersObjectPage: BuyersObjectPage
+			onTheBuyerEntityList: BuyerEntityList,
+			onTheBuyerEntityObjectPage: BuyerEntityObjectPage
         },
         async: true
     });

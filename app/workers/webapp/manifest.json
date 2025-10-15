@@ -1,7 +1,7 @@
 {
   "_version": "1.76.0",
   "sap.app": {
-    "id": "com.contractor.worker.workers",
+    "id": "com.contractor.workers.workers",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,11 +13,11 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.19.1",
-      "toolsId": "408821b8-b632-4e41-b9b2-9a6a43da0425"
+      "toolsId": "8a7bedc3-5788-465b-9d12-b7d903b2ab3f"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/Manager_Service/",
+        "uri": "/odata/v4/Admin_Service/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -73,7 +73,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.contractor.worker.workers.i18n.i18n"
+          "bundleName": "com.contractor.workers.workers.i18n.i18n"
         }
       },
       "": {
@@ -98,28 +98,28 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "WorkersList",
-          "target": "WorkersList"
+          "name": "WorkerEntityList",
+          "target": "WorkerEntityList"
         },
         {
-          "pattern": "Workers({key}):?query:",
-          "name": "WorkersObjectPage",
-          "target": "WorkersObjectPage"
+          "pattern": "WorkerEntity({key}):?query:",
+          "name": "WorkerEntityObjectPage",
+          "target": "WorkerEntityObjectPage"
         }
       ],
       "targets": {
-        "WorkersList": {
+        "WorkerEntityList": {
           "type": "Component",
-          "id": "WorkersList",
+          "id": "WorkerEntityList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Workers",
+              "contextPath": "/WorkerEntity",
               "variantManagement": "Page",
               "navigation": {
-                "Workers": {
+                "WorkerEntity": {
                   "detail": {
-                    "route": "WorkersObjectPage"
+                    "route": "WorkerEntityObjectPage"
                   }
                 }
               },
@@ -133,14 +133,14 @@
             }
           }
         },
-        "WorkersObjectPage": {
+        "WorkerEntityObjectPage": {
           "type": "Component",
-          "id": "WorkersObjectPage",
+          "id": "WorkerEntityObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Workers"
+              "contextPath": "/WorkerEntity"
             }
           }
         }

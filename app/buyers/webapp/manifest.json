@@ -1,7 +1,7 @@
 {
   "_version": "1.76.0",
   "sap.app": {
-    "id": "com.contractor.buyers.buyers",
+    "id": "com.contractor.suppliers.buyers",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,11 +13,11 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.19.1",
-      "toolsId": "2d9d31eb-668f-4dd3-841a-99233b653bb4"
+      "toolsId": "7700dd36-3d36-45bc-8367-340a7a4fff54"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/Manager_Service/",
+        "uri": "/odata/v4/Admin_Service/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -73,7 +73,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.contractor.buyers.buyers.i18n.i18n"
+          "bundleName": "com.contractor.suppliers.buyers.i18n.i18n"
         }
       },
       "": {
@@ -98,28 +98,28 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "BuyersList",
-          "target": "BuyersList"
+          "name": "BuyerEntityList",
+          "target": "BuyerEntityList"
         },
         {
-          "pattern": "Buyers({key}):?query:",
-          "name": "BuyersObjectPage",
-          "target": "BuyersObjectPage"
+          "pattern": "BuyerEntity({key}):?query:",
+          "name": "BuyerEntityObjectPage",
+          "target": "BuyerEntityObjectPage"
         }
       ],
       "targets": {
-        "BuyersList": {
+        "BuyerEntityList": {
           "type": "Component",
-          "id": "BuyersList",
+          "id": "BuyerEntityList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Buyers",
+              "contextPath": "/BuyerEntity",
               "variantManagement": "Page",
               "navigation": {
-                "Buyers": {
+                "BuyerEntity": {
                   "detail": {
-                    "route": "BuyersObjectPage"
+                    "route": "BuyerEntityObjectPage"
                   }
                 }
               },
@@ -133,14 +133,14 @@
             }
           }
         },
-        "BuyersObjectPage": {
+        "BuyerEntityObjectPage": {
           "type": "Component",
-          "id": "BuyersObjectPage",
+          "id": "BuyerEntityObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Buyers"
+              "contextPath": "/BuyerEntity"
             }
           }
         }

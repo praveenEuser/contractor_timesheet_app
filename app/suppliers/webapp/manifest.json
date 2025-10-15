@@ -13,11 +13,11 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.19.1",
-      "toolsId": "f5cf81a6-21bc-4630-9ce1-9a52b1d5aef8"
+      "toolsId": "9476b75c-a8dd-4dde-8952-61175c4ca8bd"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/Manager_Service/",
+        "uri": "/odata/v4/Admin_Service/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -98,28 +98,28 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "SuppliersList",
-          "target": "SuppliersList"
+          "name": "SupplierEntityList",
+          "target": "SupplierEntityList"
         },
         {
-          "pattern": "Suppliers({key}):?query:",
-          "name": "SuppliersObjectPage",
-          "target": "SuppliersObjectPage"
+          "pattern": "SupplierEntity({key}):?query:",
+          "name": "SupplierEntityObjectPage",
+          "target": "SupplierEntityObjectPage"
         }
       ],
       "targets": {
-        "SuppliersList": {
+        "SupplierEntityList": {
           "type": "Component",
-          "id": "SuppliersList",
+          "id": "SupplierEntityList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Suppliers",
+              "contextPath": "/SupplierEntity",
               "variantManagement": "Page",
               "navigation": {
-                "Suppliers": {
+                "SupplierEntity": {
                   "detail": {
-                    "route": "SuppliersObjectPage"
+                    "route": "SupplierEntityObjectPage"
                   }
                 }
               },
@@ -133,14 +133,14 @@
             }
           }
         },
-        "SuppliersObjectPage": {
+        "SupplierEntityObjectPage": {
           "type": "Component",
-          "id": "SuppliersObjectPage",
+          "id": "SupplierEntityObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Suppliers"
+              "contextPath": "/SupplierEntity"
             }
           }
         }

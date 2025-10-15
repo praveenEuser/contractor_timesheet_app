@@ -27,7 +27,7 @@
             <TileContent>
               <core:Icon
                 src="{icon}"
-                size="3rem"
+                size="4rem"
                 color="Accent" />
             </TileContent>
 

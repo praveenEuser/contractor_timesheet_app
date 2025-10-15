@@ -1,18 +1,59 @@
-using ManagerService as service from '../../srv/manager-service';
-annotate service.Workers with @(
+using Admin as service from '../../srv/admin-service';
+annotate service.WorkerEntity with @(
+
+    UI.SelectionFields:[
+        ID,
+        worker_name,
+        w_email
+    ],
+
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Worker ID',
+            Value : ID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Worker Name',
+            Value : worker_name,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Email',
+            Value : w_email,
+        },
+    ],
+
+    UI.HeaderInfo:{
+        TypeName: 'Worker',
+        TypeNamePlural: 'Workers',
+    },
+
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'name',
-                Value : name,
+                Label : 'Worker ID',
+                Value : ID,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'email',
-                Value : email,
+                Label : 'Worker Name',
+                Value : worker_name,
             },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Email',
+                Value : w_email,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Email',
+                Value : w_email,
+            },
+
         ],
     },
     UI.Facets : [
@@ -23,24 +64,12 @@ annotate service.Workers with @(
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
     ],
-    UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Label : 'name',
-            Value : name,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'email',
-            Value : email,
-        },
-    ],
 );
 
-annotate service.Workers with {
+annotate service.WorkerEntity with {
     supplier @Common.ValueList : {
         $Type : 'Common.ValueListType',
-        CollectionPath : 'Suppliers',
+        CollectionPath : 'SupplierEntity',
         Parameters : [
             {
                 $Type : 'Common.ValueListParameterInOut',
@@ -49,71 +78,11 @@ annotate service.Workers with {
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
+                ValueListProperty : 'supplier_name',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'contactEmail',
-            },
-        ],
-    }
-};
-
-annotate service.Workers with {
-    assignedProject @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'Projects',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : assignedProject_ID,
-                ValueListProperty : 'ID',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'startDate',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'endDate',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'plannedHours',
-            },
-        ],
-    }
-};
-
-annotate service.Workers with {
-    contractorProfile @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'ContractorProfiles',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : contractorProfile_ID,
-                ValueListProperty : 'ID',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'experience',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'rate',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'skills',
+                ValueListProperty : 's_contactEmail',
             },
         ],
     }

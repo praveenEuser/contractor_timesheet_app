@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: com.contractor.buyers.buyers
+  name: com.contractor.suppliers.buyers
 type: application
 server:
   customMiddleware:

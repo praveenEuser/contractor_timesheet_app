@@ -10,12 +10,12 @@ sap.ui.define([
     onInit: function () {
       var oModel = new JSONModel({
         tiles: [
-          {
-            title: "Supplier List",
-            subtitle: "View all suppliers",
-            icon: "sap-icon://supplier",
-            url: "/suppliers/webapp/index.html"
-          },
+          // {
+          //   title: "Supplier List",
+          //   subtitle: "View all suppliers",
+          //   icon: "sap-icon://supplier",
+          //   url: "/suppliers/webapp/index.html"
+          // },
           {
             title: "Project LR",
             subtitle: "Manage projects",
@@ -27,19 +27,19 @@ sap.ui.define([
             subtitle: "Review contractor requests",
             icon: "sap-icon://person-placeholder",
             url: "/contractor_req/webapp/index.html"
-          },
-          {
-            title: "Buyer LR",
-            subtitle: "Buyer details",
-            icon: "sap-icon://customer",
-            url: "/buyers/webapp/index.html"
-          },
-          {
-            title: "Worker LR",
-            subtitle: "Worker information",
-            icon: "sap-icon://employee",
-            url: "/workers/webapp/index.html"
           }
+          // {
+          //   title: "Buyer LR",
+          //   subtitle: "Buyer details",
+          //   icon: "sap-icon://customer",
+          //   url: "/buyers/webapp/index.html"
+          // }
+          // {
+          //   title: "Worker LR",
+          //   subtitle: "Worker information",
+          //   icon: "sap-icon://employee",
+          //   url: "/workers/webapp/index.html"
+          // }
         ]
       });
 

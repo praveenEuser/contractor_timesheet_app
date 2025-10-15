@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: com.contractor.worker.workers
+  name: com.contractor.workers.workers
 type: application
 server:
   customMiddleware:

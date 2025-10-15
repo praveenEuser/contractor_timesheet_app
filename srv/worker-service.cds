@@ -14,16 +14,13 @@ service WorkerService @(path: 'Worker_Service') {
         hoursWorked,
         status,
         percentComplete,
-        costTaken,
-        actualCost,
-        earnedValue,
-        plannedValue
+        costTaken
     };
 
     // Expose projects for reference
     entity Projects as projection on ct.Project {
         ID,
-        name,
+        project_name,
         startDate,
         endDate,
         plannedHours,

@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon Oct 13 2025 14:23:32 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Wed Oct 15 2025 02:19:22 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
 |**App Generator Version**<br>1.19.1|
 |**Generation Platform**<br>SAP Business Application Studio|
@@ -10,7 +10,7 @@
 |**Service URL**<br>http://localhost:4004/odata/v4/Manager_Service/|
 |**Module Name**<br>contractor_req|
 |**Application Title**<br>Contractor Request|
-|**Namespace**<br>com.contractor.request|
+|**Namespace**<br>com.contractor.req|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.141.1|
 |**Enable Code Assist Libraries**<br>False|
@@ -20,13 +20,13 @@
 
 ## contractor_req
 
-Contractor Request Page
+Contractor Request
 
 ### Starting the generated app
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  To launch the generated app, start your CAP project:  and navigate to the following location in your browser:
 
-http://localhost:4004/com.contractor.request.contractorreq/index.html
+http://localhost:4004/com.contractor.req.contractorreq/index.html
 
 #### Pre-requisites:
 

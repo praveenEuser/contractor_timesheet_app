@@ -28,6 +28,21 @@ annotate service.ContractorRequests with @(
                 Label : 'status',
                 Value : status,
             },
+            {
+                $Type : 'UI.DataField',
+                Label : 'ignoreReason',
+                Value : ignoreReason,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'createdAt',
+                Value : createdAt,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'updatedAt',
+                Value : updatedAt,
+            },
         ],
     },
     UI.Facets : [
@@ -79,7 +94,7 @@ annotate service.ContractorRequests with {
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
+                ValueListProperty : 'buyer_name',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
@@ -101,7 +116,7 @@ annotate service.ContractorRequests with {
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
+                ValueListProperty : 'project_name',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
@@ -131,7 +146,7 @@ annotate service.ContractorRequests with {
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
+                ValueListProperty : 'supplier_name',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',

@@ -1,26 +1,26 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon Oct 13 2025 12:26:40 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Wed Oct 15 2025 11:39:34 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
 |**App Generator Version**<br>1.19.1|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local CAP|
-|**Service URL**<br>http://localhost:4004/odata/v4/Manager_Service/|
+|**Service URL**<br>http://localhost:4004/odata/v4/Admin Service/|
 |**Module Name**<br>suppliers|
-|**Application Title**<br>Suppliers Page|
+|**Application Title**<br>Suppliers|
 |**Namespace**<br>com.contractor.suppliers|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.141.1|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>Suppliers|
+|**Main Entity**<br>SupplierEntity|
 
 ## suppliers
 
-Suppliers Page
+Supplier Registry
 
 ### Starting the generated app
 

@@ -4,7 +4,9 @@
   "description": "A simple CAP project.",
   "dependencies": {
     "@cap-js/hana": "^2",
-    "@sap/cds": "^9",
+    "@sap/cds": "^9.4.3",
+    "@sap/cds-dk": "^9.4.1",
+    "@sap/hana-client": "^2.26.18",
     "express": "^4"
   },
   "devDependencies": {
@@ -13,12 +15,15 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-buyers": "cds watch --open com.contractor.buyers.buyers/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-buyers": "cds watch --open com.contractor.suppliers.buyers/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-suppliers": "cds watch --open com.contractor.suppliers.suppliers/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-projects": "cds watch --open com.contractor.projects.projects/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-contractor_req": "cds watch --open com.contractor.request.contractorreq/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-workers": "cds watch --open com.contractor.worker.workers/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-manager_dashboard": "cds watch --open com.contractor.managerdashboard.managerdashboard/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-contractor_req": "cds watch --open com.contractor.req.contractorreq/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-workers": "cds watch --open com.contractor.workers.workers/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-manager_dashboard": "cds watch --open com.contractor.managerdashboard.managerdashboard/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-contractor_res": "cds watch --open com.contractor.response.contractorres/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-admin_dashboard": "cds watch --open com.contractor.admin.admindashboard/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-managers": "cds watch --open com.contractor.managers.managers/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "main": "index.js",
@@ -41,6 +46,13 @@
     "app/suppliers",
     "app/projects",
     "app/contractor_req",
+    "app/workers",
+    "app/contractor_res",
+    "app/contractor_req",
+    "app/contractor_res",
+    "app/managers",
+    "app/buyers",
+    "app/suppliers",
     "app/workers"
   ]
 }

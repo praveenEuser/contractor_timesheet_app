@@ -10,7 +10,7 @@ sap.ui.define([
         opaTest("Start application", function (Given, When, Then) {
             Given.iStartMyApp();
 
-            Then.onTheWorkersList.iSeeThisPage();
+            Then.onTheWorkerEntityList.iSeeThisPage();
 
         });
 
@@ -18,12 +18,12 @@ sap.ui.define([
         opaTest("Navigate to ObjectPage", function (Given, When, Then) {
             // Note: this test will fail if the ListReport page doesn't show any data
             
-            When.onTheWorkersList.onFilterBar().iExecuteSearch();
+            When.onTheWorkerEntityList.onFilterBar().iExecuteSearch();
             
-            Then.onTheWorkersList.onTable().iCheckRows();
+            Then.onTheWorkerEntityList.onTable().iCheckRows();
 
-            When.onTheWorkersList.onTable().iPressRow(0);
-            Then.onTheWorkersObjectPage.iSeeThisPage();
+            When.onTheWorkerEntityList.onTable().iPressRow(0);
+            Then.onTheWorkerEntityObjectPage.iSeeThisPage();
 
         });
 
