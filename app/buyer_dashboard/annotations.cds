@@ -1,0 +1,1 @@
+using Buyer as service from '../../srv/buyer-service';

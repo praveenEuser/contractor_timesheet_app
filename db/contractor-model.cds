@@ -1,6 +1,6 @@
 namespace com.contractor.timesheet;
 
-using { cuid } from '@sap/cds/common';
+using { cuid,managed } from '@sap/cds/common';
 using { commons_cds.Email as email} from './common';
  
 entity Buyer:cuid {
@@ -20,37 +20,43 @@ entity ProjectManager:cuid {
 }
 
 entity Positions_roles:cuid {
-    positions: String;
+    roles: String;
     no_of_positions: Integer;
-    duration: Integer;
-    description: Integer;
+    project_ID : UUID;
+    project: Association to Project on project.ID = project_ID;
+    buyer_ID     : UUID @title : '{i18n>BuyerID}';
+    buyer        : Association to Buyer on buyer.ID = buyer_ID @title : '{i18n>Buyer}';
+    hourlyRate: Decimal(10,2) @title : '{i18n>hourlyRate}';
+    description: String @UI.multiLineText: true;
 }
 
 entity Project:cuid {
     project_name: String @default: 'Unknown' @title : '{i18n>project_name}';
-    buyer_ID     : UUID @title : '{i18n>BuyerID}';
+    project_manager_ID : UUID @title : '{i18n>project_manager_ID}';
     worker_ID : UUID @title : '{i18n>WorkerID}';
+    supplier_ID: UUID; 
+    project_manager: Association to ProjectManager on project_manager.ID  = project_manager_ID @title : '{i18n>project_manager}';
     worker : Association to one Worker on worker.ID = worker_ID @title : '{i18n>Worker}';
-    buyer        : Association to Buyer on buyer.ID = buyer_ID @title : '{i18n>Buyer}';
+    supplier: Association to one Supplier on supplier.ID = supplier_ID;
     startDate: Date @title : '{i18n>startDate}';
     endDate: Date @title : '{i18n>endDate}';
-    positions: Association to Positions_roles;
+    positions: Composition of many Positions_roles on positions.project_ID = $self.ID;
     plannedHours: Integer @title : '{i18n>plannedHours}';
-    hourlyRate: Decimal(10,2) @title : '{i18n>hourlyRate}';
 }
 
 entity ContractorRequest : cuid {
     requestedBy       : Association to Buyer;
-    project           : Association to Project;
+    project_ID: UUID;
+    project           : Association to Project on project.ID = project_ID;
+    position_ID: UUID;
+    position           : Association to Positions_roles on position.ID = position_ID;
     requiredSkills    : String(500);
-    startDate         : Date;
-    endDate           : Date;
     estimatedHours    : Integer;
     preferredSupplier : Association to Supplier;
     status            : String enum { Open; Accepted; Ignored } default 'Open';
     ignoreReason      : String(500);
-    createdAt         : DateTime @Core.Computed: true;
-    updatedAt         : DateTime @Core.Computed: true;
+    createdAt         : Timestamp @cds.on.insert : $now  @cds.on.update : $now;
+    modifiedAt        : Timestamp @cds.on.insert : $now  @cds.on.update : $now;
 }
 
     // Subtasks
@@ -87,6 +93,7 @@ entity Worker:cuid {
     contractorProfile_ID: UUID @title : '{i18n>contractorProfile_ID}';
     supplier: Association to Supplier on supplier.ID = supplier_ID @title : '{i18n>supplier}';
     assignedProject: Association to Project on assignedProject.ID = assignedProject_ID @title : '{i18n>assignedProject}';
+    assigned_ProjectManager: Association to ProjectManager;
     contractorProfile: Association to ContractorProfile on contractorProfile.ID = contractorProfile_ID @title : '{i18n>contractorProfile}';
     w_email: email @title : '{i18n>w_email}';
 }

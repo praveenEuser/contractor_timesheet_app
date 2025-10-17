@@ -6,7 +6,10 @@ service ManagerService @(path : 'Manager_Service') {
     )as projection on ct.Buyer;
     entity Projects @(
         odata.draft.enabled : true
-    ) as projection on ct.Project;
+    )as projection on ct.Project{
+        *,
+        positions
+    };
     entity ContractorRequests @(
         odata.draft.enabled : true
     ) as projection on ct.ContractorRequest;
@@ -14,6 +17,7 @@ service ManagerService @(path : 'Manager_Service') {
         odata.draft.enabled : true
     ) as projection on ct.ContractorProfile;
 
+    entity ProjectManagers as projection on ct.ProjectManager;
     // Supplier actions
     action acceptRequest(requestID: UUID) returns String;
     action ignoreRequest(requestID: UUID, reason: String) returns String;
@@ -24,11 +28,11 @@ service ManagerService @(path : 'Manager_Service') {
 
     entity TimesheetEntries as projection on ct.TimesheetEntry;
     
+    entity Positions as projection on ct.Positions_roles;
     entity Suppliers @(
         odata.draft.enabled : true
     ) as projection on ct.Supplier;
-    entity Workers @(
-        odata.draft.enabled : true
-    ) as projection on ct.Worker;
+    
+    entity Workers as projection on ct.Worker;
 
 }

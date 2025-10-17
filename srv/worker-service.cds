@@ -24,6 +24,6 @@ service WorkerService @(path: 'Worker_Service') {
         startDate,
         endDate,
         plannedHours,
-        hourlyRate
+        positions.hourlyRate
     };
 }

@@ -13,25 +13,25 @@ sap.ui.define([
             title: "Managers",
             subtitle: "Manager Details",
             icon: "sap-icon://manager",
-            url: "/managers/webapp/index.html"
+            url: "/admin_pages/managers/webapp/index.html"
           },
           {
             title: "Suppliers",
             subtitle: "View all suppliers",
             icon: "sap-icon://supplier",
-            url: "/suppliers/webapp/index.html"
+            url: "/admin_pages/suppliers/webapp/index.html"
           },
           {
             title: "Buyers",
             subtitle: "Buyer details",
             icon: "sap-icon://customer",
-            url: "/buyers/webapp/index.html"
+            url: "/admin_pages/buyers/webapp/index.html"
           },
           {
             title: "Workers",
             subtitle: "Worker information",
             icon: "sap-icon://employee",
-            url: "/workers/webapp/index.html"
+            url: "/admin_pages/workers/webapp/index.html"
           }
         ]
       });

@@ -12,9 +12,7 @@ module.exports = cds.service.impl(async function () {
             'project_name',
             'startDate',
             'endDate',
-            'plannedHours',
-            'hourlyRate',
-            'buyer_ID'
+            'plannedHours'
         ];
 
         for (const field of mandatoryFields) {
@@ -75,5 +73,6 @@ module.exports = cds.service.impl(async function () {
         const userId = cds.context.user.id;
         req.query.where({ preferredSupplier_ID: userId });
     });
+
 
 });
