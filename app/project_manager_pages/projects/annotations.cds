@@ -20,7 +20,7 @@ annotate service.Projects with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : project_manager_ID,
+            Value : project_manager.Manager_name
         },
         {
             $Type : 'UI.DataField',
@@ -99,7 +99,11 @@ annotate service.Projects with @(
             },
         ],
     },
+
+    
 );
+
+
 
 
 annotate service.Positions with @(
@@ -121,7 +125,7 @@ annotate service.Positions with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : project_ID,
+            Value : project_manager.Manager_name
         },
         {
             $Type: 'UI.DataField',
@@ -130,13 +134,26 @@ annotate service.Positions with @(
         {
             $Type: 'UI.DataField',
             Value : hourlyRate,
+            Unit: currency_code
+        },
+        {
+            $Type : 'UI.DataField',
+            Label: 'Currency Code',
+            Value : currency_code,
         },
         {
             $Type: 'UI.DataField',
-            Value : buyer_ID,
+            Value : buyer.buyer_name,
         },
-    
+        {
+            $Type: 'UI.DataField',
+            Label: 'Status',
+            Value : status,
+            Criticality: ColorCoding
+        }    
     ],
+    
+
     UI.HeaderInfo:{
         TypeName : 'Position',
         TypeNamePlural : 'Positions',
@@ -189,6 +206,11 @@ annotate service.Positions with @(
             $Type: 'UI.DataField',
             Label: 'Buyer ID',
             Value : buyer_ID,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Manager ID',
+            Value : project_manager_ID,
         }
     ],
     UI.FieldGroup #roles: {
@@ -217,7 +239,19 @@ annotate service.Positions with @(
                 $Type : 'UI.DataField',
                 Label: 'Hourly Rate',
                 Value : hourlyRate,
+                Unit : currency_code
             },
+            {
+                $Type : 'UI.DataField',
+                Label: 'Currency Code',
+                Value : currency_code,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Status',
+                Value : status,
+                Criticality: ColorCoding
+            }
         ],
     },
 );
@@ -235,6 +269,43 @@ annotate service.Projects with {
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'Manager_name',
+            }
+        ],
+    }
+};
+
+annotate service.Positions with {
+    project_manager_ID @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'ProjectManagers',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : project_manager_ID,
+                ValueListProperty : 'ID',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'Manager_name',
+            }
+        ],
+    }
+};
+
+
+annotate service.Positions with {
+    currency_code @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'Currencies',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : currency_code,
+                ValueListProperty : 'code',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name',
             }
         ],
     }

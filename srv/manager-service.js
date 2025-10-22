@@ -1,9 +1,9 @@
 const cds = require("@sap/cds");
 
 module.exports = cds.service.impl(async function () {
-    const { Projects } = this.entities;
+    const { Projects,Currencies } = this.entities;
 
-    const { ContractorRequests, ContractorProfiles } = this.entities;
+    const { ContractorRequests, ContractorProfiles, Positions } = this.entities;
 
 
     this.before('CREATE', 'Projects', (req) => {
@@ -22,6 +22,29 @@ module.exports = cds.service.impl(async function () {
             }
         }
     });
+
+    this.on('READ', 'Currencies', () => {
+    return [
+      { code: 'USD', name: 'US Dollar' },
+      { code: 'EUR', name: 'Euro' },
+      { code: 'INR', name: 'Indian Rupee' },
+      // add more as needed
+    ];
+  });
+
+
+    this.after('READ', 'Positions', each => {
+        switch (each.status) {
+            case 'Open':
+            each.ColorCoding = 3; // Green
+            break;
+            case 'Close':
+            each.ColorCoding = 1; // Red
+        }
+    });
+
+
+
 
     // Supplier accepts request
     this.on('acceptRequest', async (req) => {

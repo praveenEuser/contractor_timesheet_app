@@ -18,8 +18,13 @@ using from './worker/annotations';
 
 using from './project_manager_pages/projects/annotations';
 
-using from './buyer_pages/contractor_req/annotations';
 
 using from './buyer_dashboard/annotations';
 
 using from './buyer_pages/projects/annotations';
+
+using from './supplier_pages/contractors/annotations';
+
+using from './supplier_dashboard/annotations';
+
+using from './buyer_pages/contractor_requests/annotations';

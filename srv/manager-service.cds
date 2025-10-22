@@ -1,4 +1,6 @@
 using { com.contractor.timesheet as ct } from '../db/contractor-model';
+using { sap.common as cc } from '@sap/cds/common';
+
 
 service ManagerService @(path : 'Manager_Service') {
     entity Buyers @(
@@ -10,12 +12,8 @@ service ManagerService @(path : 'Manager_Service') {
         *,
         positions
     };
-    entity ContractorRequests @(
-        odata.draft.enabled : true
-    ) as projection on ct.ContractorRequest;
-    entity ContractorProfiles @(
-        odata.draft.enabled : true
-    ) as projection on ct.ContractorProfile;
+    entity ContractorRequests as projection on ct.ContractorRequest;
+    entity ContractorProfiles as projection on ct.ContractorProfile;
 
     entity ProjectManagers as projection on ct.ProjectManager;
     // Supplier actions
@@ -29,6 +27,8 @@ service ManagerService @(path : 'Manager_Service') {
     entity TimesheetEntries as projection on ct.TimesheetEntry;
     
     entity Positions as projection on ct.Positions_roles;
+
+    entity Currencies as projection on cc.Currencies;
     entity Suppliers @(
         odata.draft.enabled : true
     ) as projection on ct.Supplier;

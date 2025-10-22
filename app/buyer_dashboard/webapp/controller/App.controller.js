@@ -19,7 +19,7 @@ sap.ui.define([
             title: "Contractor Requests",
             subtitle: "Contractor Requests",
             icon: "sap-icon://request",
-            url: "/buyer_pages/contractor_req/webapp/index.html"
+            url: "/buyer_pages/contractor_requests/webapp/index.html"
           }
         ]
       });

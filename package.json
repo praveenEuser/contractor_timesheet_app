@@ -30,7 +30,11 @@
     "watch-manage_workers": "cds watch --open com.contractor.managerworkers.manageworkers/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-project_manager_dashboard": "cds watch --open com.contractor.projectmanagerdashboard.projectmanagerdashboard/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-supplier": "cds watch --open com.contractor.supplier.supplier/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-worker": "cds watch --open com.contractor.worker.worker/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-worker": "cds watch --open com.contractor.worker.worker/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-contractor_request": "cds watch --open com.contractor.requests.contractorrequest/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-contractor_requests": "cds watch --open com.contractor.requests.contractorrequests/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-contractors": "cds watch --open com.contractor.contractors.contractors/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-supplier_dashboard": "cds watch --open com.contractor.supplierdashboard.supplierdashboard/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "main": "index.js",
@@ -72,6 +76,12 @@
     "app/projects",
     "app/projects",
     "app/contractor_req",
-    "app/projects"
+    "app/projects",
+    "app/contractor_request",
+    "app/contractor_requests",
+    "app/contractors",
+    "app/contractor_requests",
+    "app/contractor_requests",
+    "app/contractor_requests"
   ]
 }

@@ -12,6 +12,10 @@ service SupplierService @(path: 'Supplier_Service') {
     // Expose workers linked to suppliers
     entity Workers as projection on ct.Worker;
 
+    entity Contractor @(
+        odata.draft.enabled : true
+    )as projection on ct.Contractors;
+
     // Expose timesheet entries so suppliers can view status
     entity TimesheetEntries as projection on ct.TimesheetEntry {
         ID,
