@@ -28,3 +28,5 @@ using from './supplier_pages/contractors/annotations';
 using from './supplier_dashboard/annotations';
 
 using from './buyer_pages/contractor_requests/annotations';
+
+using from './supplier_pages/check_contractor_requests/annotations';

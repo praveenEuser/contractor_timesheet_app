@@ -10,10 +10,10 @@ sap.ui.define([
         var oModel = new JSONModel({
           tiles: [
             {
-              title: "Projects",
-              subtitle: "Project Creation Page",
-              icon: "sap-icon://add-activity",
-              url: "/project_manager_pages/projects/webapp/index.html"
+              title: "Contractor Requests",
+              subtitle: "Check Contractor Requests",
+              icon: "sap-icon://customer-order-entry",
+              url: "/supplier_pages/check_contractor_requests/webapp/index.html"
             },
             {
               title: "Contractors",

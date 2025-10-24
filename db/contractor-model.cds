@@ -59,7 +59,8 @@ entity ContractorRequest : cuid {
     project_ID: UUID;
     position_ID : UUID;
     project           : Association to Project on project.ID = project_ID;
-    position           : Association to Positions_roles on position.ID = position_ID;
+    position           : Association to Positions_roles on position_ID = $self.ID;
+    //pos_detail: Association to Positions_roles;
     requiredSkills    : String(500);
     //status            : String enum { Open; Accepted; Ignored } default 'Open';
     //ignoreReason      : String(500);
@@ -67,25 +68,39 @@ entity ContractorRequest : cuid {
     modifiedAt        : Timestamp @cds.on.insert : $now @cds.on.update : $now;
 
 
-    requestsupplier : Composition of many RequestSuppliers on requestsupplier.request = $self;
+    requestsupplier : Composition of many RequestSuppliers on requestsupplier.c_request = $self;
+
+    
+
+    // @UI.DataFieldForAction: true
+    // action Send() returns Boolean;
 }
 
+@assert.unique: {
+  uniqueSupplierPerRequest: [c_request_ID, supplier_ID]
+}
 entity RequestSuppliers : cuid, managed {
-  request       : Association to ContractorRequest;
-  supplier      : Association to Supplier;
+
+
+  c_request_ID : UUID not null;
+  c_request       : Association to ContractorRequest on c_request.ID = c_request_ID;
+  supplier_ID: UUID not null;
+  supplier      : Association to Supplier on supplier.ID = supplier_ID;
 
   // 🧭 Enum-based status field
   status        : String enum {
-    Sent;
     Accepted;
-    Ignored;
-    Responded;
-  } default 'Sent';
+    Pending;
+  } default 'Pending';
 
-  ignoreReason  : String(255);
-  responseDate  : Timestamp;
+
+  responseDate  : DateTime;
 
   responses     : Composition of many ContractorProfile on responses.request = $self;
+
+  
+
+  //unique uniqueSupplierPerRequest on (request_ID, supplier_ID);
 }
 
 
@@ -101,10 +116,8 @@ entity RequestSuppliers : cuid, managed {
 // }
 
 entity ContractorProfile : cuid,managed{
-    co_name      : String(100);
-    experience   : Integer;
-    rate         : Decimal(10,2);
-    skills       : String(500);
+    contractor_ID: UUID not null;
+    contractor : Association to Contractors on contractor.ID = contractor_ID;
     status       : String enum { Pending; Approved; Rejected } default 'Pending';
     request      : Association to RequestSuppliers;
     supplier  : Association to Supplier;

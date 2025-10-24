@@ -1,7 +1,7 @@
 {
   "_version": "1.76.0",
   "sap.app": {
-    "id": "com.contractor.projects.projects",
+    "id": "com.contractor.checkcontractorrequests.checkcontractorrequests",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,11 +13,11 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.19.1",
-      "toolsId": "1c641154-598d-432f-a193-72fe86ea656c"
+      "toolsId": "c1a77ff1-2d6f-4b68-8db7-49a418b3f7df"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/Manager_Service/",
+        "uri": "/odata/v4/Supplier_Service/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -27,10 +27,10 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "Projects-display": {
-          "semanticObject": "Projects",
+        "Contractor_Requests-display": {
+          "semanticObject": "Contractor_Requests",
           "action": "display",
-          "title": "{{Projects-display.flpTitle}}",
+          "title": "{{Contractor_Requests-display.flpTitle}}",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -58,12 +58,11 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.141.1",
+      "minUI5Version": "1.141.3",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {},
-        "sap.f": {}
+        "sap.fe.templates": {}
       }
     },
     "contentDensities": {
@@ -74,7 +73,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.contractor.projects.projects.i18n.i18n"
+          "bundleName": "com.contractor.checkcontractorrequests.checkcontractorrequests.i18n.i18n"
         }
       },
       "": {
@@ -95,55 +94,37 @@
       "css": []
     },
     "routing": {
-      "config": {
-        "flexibleColumnLayout": {
-          "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
-        },
-        "routerClass": "sap.f.routing.Router"
-      },
+      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "ProjectsList",
-          "target": [
-            "ProjectsList"
-          ]
+          "name": "RequestSuppliersList",
+          "target": "RequestSuppliersList"
         },
         {
-          "pattern": "Projects({key}):?query:",
-          "name": "ProjectsObjectPage",
-          "target": [
-            "ProjectsList",
-            "ProjectsObjectPage"
-          ]
+          "pattern": "RequestSuppliers({key}):?query:",
+          "name": "RequestSuppliersObjectPage",
+          "target": "RequestSuppliersObjectPage"
         },
         {
-          "pattern": "Projects({key})/positions({key2}):?query:",
-          "name": "PositionsObjectPage",
-          "target": [
-            "ProjectsList",
-            "ProjectsObjectPage",
-            "PositionsObjectPage"
-          ]
+          "pattern": "RequestSuppliers({key})/responses({key2}):?query:",
+          "name": "ContractorProfilesObjectPage",
+          "target": "ContractorProfilesObjectPage"
         }
       ],
       "targets": {
-        "ProjectsList": {
+        "RequestSuppliersList": {
           "type": "Component",
-          "id": "ProjectsList",
+          "id": "RequestSuppliersList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "inlineEdit": {
-                "disabledFields": []
-              },
-              "contextPath": "/Projects",
+              "contextPath": "/RequestSuppliers",
               "variantManagement": "Page",
               "navigation": {
-                "Projects": {
+                "RequestSuppliers": {
                   "detail": {
-                    "route": "ProjectsObjectPage"
+                    "route": "RequestSuppliersObjectPage"
                   }
                 }
               },
@@ -153,53 +134,40 @@
                     "type": "ResponsiveTable"
                   }
                 }
-              },
-              "initialLoad": "Enabled"
+              }
             }
-          },
-          "controlAggregation": "beginColumnPages",
-          "contextPattern": ""
+          }
         },
-        "ProjectsObjectPage": {
+        "RequestSuppliersObjectPage": {
           "type": "Component",
-          "id": "ProjectsObjectPage",
+          "id": "RequestSuppliersObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Projects",
+              "contextPath": "/RequestSuppliers",
               "navigation": {
-                "positions": {
+                "responses": {
                   "detail": {
-                    "route": "PositionsObjectPage"
+                    "route": "ContractorProfilesObjectPage"
                   }
                 }
               }
             }
-          },
-          "controlAggregation": "midColumnPages",
-          "contextPattern": "/Projects({key})"
+          }
         },
-        "PositionsObjectPage": {
+        "ContractorProfilesObjectPage": {
           "type": "Component",
-          "id": "PositionsObjectPage",
+          "id": "ContractorProfilesObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Projects/positions"
+              "contextPath": "/RequestSuppliers/responses"
             }
-          },
-          "controlAggregation": "endColumnPages",
-          "contextPattern": "/Projects({key})/positions({key2})"
+          }
         }
       }
-    },
-    "rootView": {
-      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
-      "type": "XML",
-      "async": true,
-      "id": "appRootView"
     }
   },
   "sap.fiori": {

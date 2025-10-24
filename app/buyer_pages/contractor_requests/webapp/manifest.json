@@ -62,7 +62,8 @@
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {}
+        "sap.fe.templates": {},
+        "sap.f": {}
       }
     },
     "contentDensities": {
@@ -94,22 +95,52 @@
       "css": []
     },
     "routing": {
-      "config": {},
+      "config": {
+        "flexibleColumnLayout": {
+          "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+        },
+        "routerClass": "sap.f.routing.Router"
+      },
       "routes": [
         {
           "pattern": ":?query:",
           "name": "PositionsList",
-          "target": "PositionsList"
+          "target": [
+            "PositionsList"
+          ]
         },
         {
           "pattern": "Positions({key}):?query:",
           "name": "PositionsObjectPage",
-          "target": "PositionsObjectPage"
+          "target": [
+            "PositionsList",
+            "PositionsObjectPage"
+          ]
         },
         {
           "pattern": "Positions({key})/contractor_req({key2}):?query:",
           "name": "ContractorRequestEntityObjectPage",
-          "target": "ContractorRequestEntityObjectPage"
+          "target": [
+            "PositionsList",
+            "PositionsObjectPage",
+            "ContractorRequestEntityObjectPage"
+          ]
+        },
+        {
+          "name": "Positions_contractor_req_requestsupplierObjectPage",
+          "pattern": "Positions({key})/contractor_req({key2})/requestsupplier({requestsupplierKey}):?query:",
+          "target": [
+            "Positions_contractor_req_requestsupplierObjectPage"
+          ]
+        },
+        {
+          "name": "Positions_contractor_req_requestsupplier_responsesObjectPage",
+          "pattern": "Positions({key})/contractor_req({key2})/requestsupplier({requestsupplierKey})/responses({responsesKey}):?query:",
+          "target": [
+            "Positions_contractor_req_requestsupplierObjectPage",
+            "Positions_contractor_req_requestsupplier_responsesObjectPage"
+          ]
         }
       ],
       "targets": {
@@ -134,9 +165,12 @@
                     "type": "ResponsiveTable"
                   }
                 }
-              }
+              },
+              "initialLoad": "Enabled"
             }
-          }
+          },
+          "controlAggregation": "beginColumnPages",
+          "contextPattern": ""
         },
         "PositionsObjectPage": {
           "type": "Component",
@@ -154,7 +188,9 @@
                 }
               }
             }
-          }
+          },
+          "controlAggregation": "midColumnPages",
+          "contextPattern": "/Positions({key})"
         },
         "ContractorRequestEntityObjectPage": {
           "type": "Component",
@@ -163,15 +199,70 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Positions/contractor_req"
+              "contextPath": "/Positions/contractor_req",
+              "navigation": {
+                "requestsupplier": {
+                  "detail": {
+                    "route": "Positions_contractor_req_requestsupplierObjectPage"
+                  }
+                }
+              }
             }
-          }
+          },
+          "controlAggregation": "endColumnPages",
+          "contextPattern": "/Positions({key})/contractor_req({key2})"
+        },
+        "Positions_contractor_req_requestsupplierObjectPage": {
+          "type": "Component",
+          "id": "Positions_contractor_req_requestsupplierObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "controlAggregation": "endColumnPages",
+          "options": {
+            "settings": {
+              "navigation": {
+                "responses": {
+                  "detail": {
+                    "route": "Positions_contractor_req_requestsupplier_responsesObjectPage"
+                  }
+                }
+              },
+              "contextPath": "/Positions/contractor_req/requestsupplier"
+            }
+          },
+          "contextPattern": "/Positions({key})/contractor_req({key2})/requestsupplier({requestsupplierKey})"
+        },
+        "Positions_contractor_req_requestsupplier_responsesObjectPage": {
+          "type": "Component",
+          "id": "Positions_contractor_req_requestsupplier_responsesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "controlAggregation": "midColumnPages",
+          "options": {
+            "settings": {
+              "navigation": {},
+              "contextPath": "/Positions/contractor_req/requestsupplier/responses"
+            }
+          },
+          "contextPattern": "/Positions({key})/contractor_req({key2})/requestsupplier({requestsupplierKey})/responses({responsesKey})"
         }
       }
+    },
+    "controllerExtensions": {
+      "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+        "controllerName": "com.contractor.requests.ext.ObjectPageExt"
+      }
+    },
+    "rootView": {
+      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+      "type": "XML",
+      "async": true,
+      "id": "appRootView"
     }
   },
   "sap.fiori": {
     "registrationIds": [],
     "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {}
   }
 }

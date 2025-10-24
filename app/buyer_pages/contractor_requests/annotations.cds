@@ -38,9 +38,11 @@ annotate service.Positions with @(
         }
     },
 
+
     UI.Facets : [
         {
             $Type : 'UI.CollectionFacet',
+            ID: 'PositionsSection',
             Label: 'General Information',
             Facets : [
                 {
@@ -157,6 +159,7 @@ annotate service.ContractorRequestEntity with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
+            Label : 'Request Suppliers',
             Target: 'requestsupplier/@UI.LineItem',
         },
     ],
@@ -171,7 +174,7 @@ annotate service.ContractorRequestEntity with @(
             $Type: 'UI.DataField',
             Label: 'Role',
             Value : position.roles,
-        }
+        },
     ],
     UI.FieldGroup #assign: {
         Data : [
@@ -189,7 +192,10 @@ annotate service.ContractorRequestEntity with @(
     },
 );
 
-annotate service.RequestSuppliers with@(
+
+
+annotate service.RequestSuppliers with @(
+
     UI.LineItem:[
         {
             $Type : 'UI.DataField',
@@ -206,10 +212,102 @@ annotate service.RequestSuppliers with@(
             Label: 'Status',
             Value : status
         },
+    ],
+
+    UI.Facets: [
+        {
+            $Type: 'UI.CollectionFacet',
+            Label: 'Add Suppliers',
+            ID: 'AddSuppliersSection',
+            Facets: [
+                {
+                $Type: 'UI.ReferenceFacet',
+                Label: 'Add Suppliers',
+                Target: '@UI.FieldGroup#AddSuppliers'
+                }
+            ]
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Contractors',
+            Target: 'responses/@UI.LineItem',
+        },
+  ],
+  UI.FieldGroup#AddSuppliers: {
+    Data: [
+      { $Type: 'UI.DataField', Label: 'Supplier Request ID', Value: ID },
+      { $Type: 'UI.DataField', Label: 'Supplier ID', Value: supplier_ID },
+      { $Type: 'UI.DataField', Label: 'Status', Value: status },
+      { $Type: 'UI.DataField', Label: 'Role', Value: c_request.position.roles }
     ]
+  }
+
+
 ) ;
 
-    
+annotate service.ContractorProfile with @(
+    UI.LineItem:[
+        { $Type: 'UI.DataField', Label: 'Contractor ID', Value: contractor_ID },
+        { $Type: 'UI.DataField', Label: 'Contractor Name', Value: contractor.co_name },
+        { $Type: 'UI.DataField', Label: 'Supplier ID', Value: request.supplier_ID },
+        { $Type: 'UI.DataField', Label: 'Experience', Value: contractor.experience },
+        { $Type: 'UI.DataField', Label: 'Status', Value: status},
+    ],
+    UI.HeaderInfo:{
+        TypeName: 'Contractor Profile',
+        TypeNamePlural : 'Contractor Profiles',
+        Title:{
+            $Type : 'UI.DataField',
+            Label : 'ID',
+            Value : ID,
+        },
+    },
+
+    UI.Facets:[
+        {
+            $Type: 'UI.CollectionFacet',
+            Label: 'Contractor Profile',
+            ID: 'Contractor_Profile',
+            Facets: [
+                {
+                    $Type: 'UI.ReferenceFacet',
+                    Label: 'Project Details',
+                    Target: '@UI.Identification#Profile'
+                },
+            ]
+        },
+    ],
+
+    UI.Identification#Profile:[
+        { $Type: 'UI.DataField', Label: 'Contractor ID', Value: contractor_ID },
+        { $Type: 'UI.DataField', Label: 'Contractor Name', Value: contractor.co_name },
+        { $Type: 'UI.DataField', Label: 'Experience', Value: contractor.experience },
+        { $Type: 'UI.DataField', Label: 'Skills', Value: contractor.skills },
+        { $Type: 'UI.DataField', Label: 'Rate', Value: contractor.rate },
+        { $Type: 'UI.DataField', Label: 'Resume', Value: contractor.resume },
+    ]
+);
+
+
+annotate service.RequestSuppliers with {
+    supplier_ID @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'Suppliers',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'supplier_ID',
+                ValueListProperty : 'ID',
+            },
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'supplier.supplier_name',
+                ValueListProperty : 'supplier_name',
+            },
+        ],
+    }
+};  
+   
 
 annotate service.Positions with {
     buyer @Common.ValueList : {

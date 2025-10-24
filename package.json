@@ -34,7 +34,8 @@
     "watch-contractor_request": "cds watch --open com.contractor.requests.contractorrequest/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-contractor_requests": "cds watch --open com.contractor.requests.contractorrequests/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-contractors": "cds watch --open com.contractor.contractors.contractors/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-supplier_dashboard": "cds watch --open com.contractor.supplierdashboard.supplierdashboard/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-supplier_dashboard": "cds watch --open com.contractor.supplierdashboard.supplierdashboard/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-check_contractor_requests": "cds watch --open com.contractor.checkcontractorrequests.checkcontractorrequests/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "main": "index.js",
@@ -82,6 +83,9 @@
     "app/contractors",
     "app/contractor_requests",
     "app/contractor_requests",
-    "app/contractor_requests"
+    "app/contractor_requests",
+    "app/check_contractor_requests",
+    "app/check_contractor_requests",
+    "app/check_contractor_requests"
   ]
 }

@@ -5,15 +5,19 @@ using { sap.common as cc } from '@sap/cds/common';
 service Buyer @(path: 'Buyer_Service') {
 
     entity ContractorRequestEntity as projection on ct.ContractorRequest{
+        @readonly position.buyer.buyer_name,
         *,
         position : Association to Positions on position.ID = position_ID,
         requestsupplier
-    };
+    }; 
     entity ProjectsEntity as projection on ct.Project;
 
     entity Suppliers as projection on ct.Supplier;
 
-    entity Buyers as projection on ct.Buyer;
+    entity Buyers as projection on ct.Buyer{
+        @readonly buyer_name,
+        *,
+    };
 
     entity Positions @(
         odata.draft.enabled: true
@@ -33,8 +37,17 @@ service Buyer @(path: 'Buyer_Service') {
         contractor_req
     };
 
+    
+
+
     entity RequestSuppliers  as projection on ct.RequestSuppliers;
 
+    entity ContractorProfile as projection on ct.ContractorProfile;
+
     entity Currencies as projection on cc.Currencies;
+
+    
+
+    
 
 }

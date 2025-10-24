@@ -1,0 +1,33 @@
+{
+  "generationParameters": {
+    "generationDate": "Fri Oct 24 2025 12:33:15 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/odata/v4/Supplier_Service/",
+    "appName": "check_contractor_requests",
+    "appTitle": "Contractor Requests",
+    "appDescription": "Check Contractor Requests",
+    "appNamespace": "com.contractor.check_contractor_requests",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.141.3",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.19.1",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "RequestSuppliers"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "responses"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/com.contractor.checkcontractorrequests.checkcontractorrequests/index.html"
+  }
+}
