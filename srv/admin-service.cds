@@ -16,4 +16,10 @@ service Admin @(path : 'Admin_Service') {
         odata.draft.enabled : true
     ) as projection on ct.Worker;
 
+    entity Contractor as projection on ct.Contractors;
+
+    entity SelectedWorkers as projection on ct.ContractorProfile{
+        *,
+    } where status = 'Selected';
+
 }

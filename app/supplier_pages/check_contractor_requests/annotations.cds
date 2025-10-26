@@ -152,11 +152,15 @@ annotate service.RequestSuppliers with @(
 
 
 annotate service.ContractorProfiles with @(
+
+    
+
     UI.LineItem:[
-        { $Type: 'UI.DataField', Label: 'Contractor ID', Value: contractor_ID },
+        { $Type: 'UI.DataField', Label: 'ID', Value: ID },
         { $Type: 'UI.DataField', Label: 'Contractor Name', Value: contractor.co_name },
         { $Type: 'UI.DataField', Label: 'Experience', Value: contractor.experience },
         { $Type: 'UI.DataField', Label: 'Status', Value: status},
+        { $Type: 'UI.DataField', Label: 'Resume', Value: contractor.resume },
     ],
     UI.HeaderInfo:{
         TypeName: 'Contractor Profile',
@@ -185,13 +189,19 @@ annotate service.ContractorProfiles with @(
 
     UI.Identification#Profile:[
         { $Type: 'UI.DataField', Label: 'Contractor ID', Value: contractor_ID },
-        { $Type: 'UI.DataField', Label: 'Contractor Name', Value: contractor.co_name },
-        { $Type: 'UI.DataField', Label: 'Experience', Value: contractor.experience },
-        { $Type: 'UI.DataField', Label: 'Skills', Value: contractor.skills },
-        { $Type: 'UI.DataField', Label: 'Rate', Value: contractor.rate },
-        { $Type: 'UI.DataField', Label: 'Resume', Value: contractor.resume },
+        //{ $Type: 'UI.DataField', Label: 'Contractor Name', Value: contractor.co_name },
+        //{ $Type: 'UI.DataField', Label: 'Experience', Value: contractor.experience },
+        //{ $Type: 'UI.DataField', Label: 'Skills', Value: contractor.skills },
+        //{ $Type: 'UI.DataField', Label: 'Rate', Value: contractor.rate },
+        //{ $Type: 'UI.DataField', Label: 'Resume', Value: contractor.resume },
     ]
 );
+
+
+annotate service.ContractorProfiles with {
+    //ID @UI.Hidden;
+   supplier_ID @UI.Hidden;
+};
 
 
 annotate service.ContractorProfiles with {
@@ -204,46 +214,51 @@ annotate service.ContractorProfiles with {
                 LocalDataProperty : contractor_ID,
                 ValueListProperty : 'ID',
             },
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : contractor.co_name,
-                ValueListProperty : 'co_name',
-            },
+            // {
+            //     $Type : 'Common.ValueListParameterInOut',
+            //     LocalDataProperty : contractor.co_name,
+            //     ValueListProperty : 'co_name',
+            // },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 //LocalDataProperty : contractor.co_name,
                 ValueListProperty : 'co_name',
             },
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : contractor.experience,
-                ValueListProperty : 'experience',
-            },
+            // {
+            //     $Type : 'Common.ValueListParameterInOut',
+            //     LocalDataProperty : contractor.experience,
+            //     ValueListProperty : 'experience',
+            // },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 //LocalDataProperty : contractor.experience,
                 ValueListProperty : 'experience',
             },
             {
-                $Type : 'Common.ValueListParameterInOut',
+                $Type : 'Common.ValueListParameterDisplayOnly',
                 LocalDataProperty : contractor.skills,
                 ValueListProperty : 'skills',
             },
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : contractor.rate,
-                ValueListProperty : 'rate',
-            },
+            // {
+            //     $Type : 'Common.ValueListParameterInOut',
+            //     LocalDataProperty : contractor.rate,
+            //     ValueListProperty : 'rate',
+            // },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 //LocalDataProperty : contractor.rate,
                 ValueListProperty : 'rate',
             },
             {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : contractor.resume,
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                //LocalDataProperty : contractor.rate,
                 ValueListProperty : 'resume',
             },
+            // {
+            //     $Type : 'Common.ValueListParameterInOut',
+            //     LocalDataProperty : contractor.resume,
+            //     ValueListProperty : 'resume',
+            // },
         ],
     } 
 };

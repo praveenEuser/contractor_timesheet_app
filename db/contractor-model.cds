@@ -24,10 +24,14 @@ entity Positions_roles:cuid{
     roles: String;
     no_of_positions: Integer;
     project_ID : UUID;
+    supplier_ID: UUID;
     project: Association to Project on project.ID = project_ID;
     buyer_ID     : UUID @title : '{i18n>BuyerID}';
     project_manager_ID: UUID;
+    worker_ID : UUID @title : '{i18n>WorkerID}';
     project_manager: Association to ProjectManager on project_manager.ID = project_manager_ID;
+    worker : Association to  many Worker on worker.ID = worker_ID @title : '{i18n>Worker}';
+    supplier: Association to Supplier on supplier.ID = supplier_ID;
     buyer        : Association to Buyer on buyer.ID = buyer_ID @title : '{i18n>Buyer}';
     contractor_req: Composition of many ContractorRequest on contractor_req.position_ID =$self.ID;
     @Semantics.amount.currencyCode: 'currency_code'
@@ -42,11 +46,7 @@ entity Positions_roles:cuid{
 entity Project:cuid {
     project_name: String @default: 'Unknown' @title : '{i18n>project_name}';
     project_manager_ID : UUID @title : '{i18n>project_manager_ID}';
-    worker_ID : UUID @title : '{i18n>WorkerID}';
-    supplier_ID: UUID;
     project_manager: Association to ProjectManager on project_manager.ID  = project_manager_ID @title : '{i18n>project_manager}';
-    worker : Association to Worker on worker.ID = worker_ID @title : '{i18n>Worker}';
-    supplier: Association to Supplier on supplier.ID = supplier_ID;
     startDate: Date @title : '{i18n>startDate}';
     endDate: Date @title : '{i18n>endDate}';
     positions: Composition of many Positions_roles on positions.project_ID = $self.ID;
@@ -117,22 +117,23 @@ entity RequestSuppliers : cuid, managed {
 
 entity ContractorProfile : cuid,managed{
     contractor_ID: UUID not null;
+    supplier_ID : UUID;
     contractor : Association to Contractors on contractor.ID = contractor_ID;
-    status       : String enum { Pending; Approved; Rejected } default 'Pending';
+    status       : String enum { Pending; Selected; Rejected } default 'Pending';
     request      : Association to RequestSuppliers;
-    supplier  : Association to Supplier;
+    supplier  : Association to Supplier on supplier.ID = supplier_ID ;
 }
 
 entity Worker:cuid {
-    worker_name: String @title : '{i18n>workerName}';
     supplier_ID: UUID @title : '{i18n>supplier_ID}';
     assignedProject_ID: UUID @title : '{i18n>assignedProject_ID}';
     contractorProfile_ID: UUID @title : '{i18n>contractorProfile_ID}';
+    // contractor_ID: UUID not null;
+    // contractor : Association to Contractors on contractor.ID = contractor_ID;
     supplier: Association to Supplier on supplier.ID = supplier_ID @title : '{i18n>supplier}';
     assignedProject: Association to Project on assignedProject.ID = assignedProject_ID @title : '{i18n>assignedProject}';
     assigned_ProjectManager: Association to ProjectManager;
     contractorProfile: Association to ContractorProfile on contractorProfile.ID = contractorProfile_ID @title : '{i18n>contractorProfile}';
-    w_email: email @title : '{i18n>w_email}';
 }
 
 entity Contractors: cuid,managed{

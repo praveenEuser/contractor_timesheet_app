@@ -12,7 +12,10 @@ service Buyer @(path: 'Buyer_Service') {
     }; 
     entity ProjectsEntity as projection on ct.Project;
 
-    entity Suppliers as projection on ct.Supplier;
+    entity Suppliers as projection on ct.Supplier{
+        @readonly supplier_name,
+        *,
+    };
 
     entity Buyers as projection on ct.Buyer{
         @readonly buyer_name,
@@ -40,9 +43,19 @@ service Buyer @(path: 'Buyer_Service') {
     
 
 
-    entity RequestSuppliers  as projection on ct.RequestSuppliers;
+    entity RequestSuppliers  as projection on ct.RequestSuppliers{
+        @readonly status,
+        *,
+    };
 
-    entity ContractorProfile as projection on ct.ContractorProfile;
+
+    entity ContractorProfile as projection on ct.ContractorProfile{
+        @readonly contractor_ID,
+        *,
+    };
+
+    @readonly
+    entity Contractor as projection on ct.Contractors;
 
     entity Currencies as projection on cc.Currencies;
 

@@ -10,18 +10,28 @@ annotate service.WorkerEntity with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'Worker ID',
-            Value : ID,
-        },
-        {
-            $Type : 'UI.DataField',
             Label : 'Worker Name',
-            Value : worker_name,
+            Value : contractorProfile.contractor.co_name
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Email',
-            Value : w_email,
+            Label : 'Skills',
+            Value : contractorProfile.contractor.skills
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Experience',
+            Value : contractorProfile.contractor.experience
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Resume',
+            Value : contractorProfile.contractor.resume
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Resume',
+            Value : contractorProfile.contractor.resume
         },
     ],
 
@@ -35,24 +45,9 @@ annotate service.WorkerEntity with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'Worker ID',
-                Value : ID,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Worker Name',
-                Value : worker_name,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Email',
-                Value : w_email,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Email',
-                Value : w_email,
-            },
+                Label : 'Contractor Profile ID',
+                Value : contractorProfile_ID,
+            }
 
         ],
     },
@@ -65,6 +60,29 @@ annotate service.WorkerEntity with @(
         },
     ],
 );
+
+annotate service.WorkerEntity with {
+    contractorProfile_ID @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'SelectedWorkers',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : contractorProfile_ID,
+                ValueListProperty : 'ID',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'contractor.co_name',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'contractor.skills',
+            },
+        ],
+    }
+};
+
 
 annotate service.WorkerEntity with {
     supplier @Common.ValueList : {

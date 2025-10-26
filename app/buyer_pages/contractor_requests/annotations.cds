@@ -245,11 +245,15 @@ annotate service.RequestSuppliers with @(
 
 ) ;
 
+
+annotate service.ContractorProfile with @Capabilities.InsertRestrictions.Insertable : false;
+annotate service.ContractorProfile with @Capabilities.DeleteRestrictions.Deletable : false;
+
 annotate service.ContractorProfile with @(
     UI.LineItem:[
         { $Type: 'UI.DataField', Label: 'Contractor ID', Value: contractor_ID },
         { $Type: 'UI.DataField', Label: 'Contractor Name', Value: contractor.co_name },
-        { $Type: 'UI.DataField', Label: 'Supplier ID', Value: request.supplier_ID },
+        { $Type: 'UI.DataField', Label: 'Supplier Name', Value: request.supplier.supplier_name },
         { $Type: 'UI.DataField', Label: 'Experience', Value: contractor.experience },
         { $Type: 'UI.DataField', Label: 'Status', Value: status},
     ],
@@ -285,6 +289,7 @@ annotate service.ContractorProfile with @(
         { $Type: 'UI.DataField', Label: 'Skills', Value: contractor.skills },
         { $Type: 'UI.DataField', Label: 'Rate', Value: contractor.rate },
         { $Type: 'UI.DataField', Label: 'Resume', Value: contractor.resume },
+        { $Type: 'UI.DataField', Label: 'Status', Value: status },
     ]
 );
 

@@ -28,6 +28,11 @@ annotate service.ProjectsEntity with @(
             Label : 'General Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Positions',
+            Target: 'positions/@UI.LineItem',
+        },
     ],
     UI.LineItem : [
         {
@@ -48,4 +53,6 @@ annotate service.ProjectsEntity with @(
         },
     ],
 );
+
+
 

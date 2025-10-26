@@ -56,7 +56,6 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.141.3",
       "libs": {
@@ -251,6 +250,7 @@
         "controllerName": "com.contractor.requests.ext.ObjectPageExt"
       }
     },
+    "flexEnabled": true,
     "rootView": {
       "viewName": "sap.fe.templates.RootContainer.view.Fcl",
       "type": "XML",
