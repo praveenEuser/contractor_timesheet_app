@@ -3,14 +3,14 @@ annotate service.Workers with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
         Data : [
-            {
-                $Type : 'UI.DataField',
-                Value : worker_name,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : w_email,
-            },
+            // {
+            //     $Type : 'UI.DataField',
+            //     Value : ,
+            // },
+            { $Type: 'UI.DataField', Label: 'Worker Name', Value: contractorProfile.contractor.co_name },
+            // { $Type: 'UI.DataField', Label: 'Position ID', Value: assignedPosition_ID },
+            // { $Type: 'UI.DataField', Label: 'Project ID', Value: assignedProject_ID },
+            // { $Type: 'UI.DataField', Label: 'Manager ID', Value: assigned_ProjectManager_ID },
         ],
     },
     UI.Facets : [
@@ -22,14 +22,11 @@ annotate service.Workers with @(
         },
     ],
     UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Value : worker_name,
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : w_email,
-        },
+        { $Type: 'UI.DataField', Label: 'Worker Name', Value: contractorProfile.contractor.co_name },
+        { $Type: 'UI.DataField', Label: 'Position ID', Value: 'position_ID' },
+        { $Type: 'UI.DataField', Label: 'Project ID', Value: 'project_ID' },
+        { $Type: 'UI.DataField', Label: 'Buyer ID', Value: 'buyer_ID' },
+        { $Type: 'UI.DataField', Label: 'Manager ID', Value: 'project_manager_ID' },
     ],
 );
 

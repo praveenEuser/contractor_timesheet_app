@@ -20,6 +20,12 @@ sap.ui.define([
             subtitle: "Manage Workers Timesheet",
             icon: "sap-icon://timesheet",
             url: "/project_manager_pages/manage_workers/webapp/index.html"
+          },
+          {
+            title: "Task Assignment",
+            subtitle: "Worker Task Assignment",
+            icon: "sap-icon://activity-individual",
+            url: "/project_manager_pages/task_assign/webapp/index.html"
           }
         ]
       });

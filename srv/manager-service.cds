@@ -24,9 +24,14 @@ service ManagerService @(path : 'Manager_Service') {
     action approveContractorProfile(profileID: UUID) returns String;
     action rejectContractorProfile(profileID: UUID) returns String;
 
-    entity TimesheetEntries as projection on ct.TimesheetEntry;
+    //entity TimesheetEntries as projection on ct.TimesheetEntry;
     
-    entity Positions as projection on ct.Positions_roles;
+    entity Positions as projection on ct.Positions_roles{
+        *,
+        tasks
+    };
+
+    entity Contractor as projection on ct.Contractors;
 
     entity Currencies as projection on cc.Currencies;
     entity Suppliers @(
@@ -34,5 +39,12 @@ service ManagerService @(path : 'Manager_Service') {
     ) as projection on ct.Supplier;
     
     entity Workers as projection on ct.Worker;
+
+    entity Tasks as projection on ct.Task{
+        *,
+        assignments
+    };
+
+    entity WorkerTaskAssignment as projection on ct.WorkerTaskAssignment;
 
 }

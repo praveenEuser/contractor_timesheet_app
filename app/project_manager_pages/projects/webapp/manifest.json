@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.19.1",
-      "toolsId": "1c641154-598d-432f-a193-72fe86ea656c"
+      "version": "1.19.3",
+      "toolsId": "a85ce483-c6da-4b83-9756-84d8e19a0bd6"
     },
     "dataSources": {
       "mainService": {
@@ -58,12 +58,11 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.141.1",
+      "minUI5Version": "1.141.3",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {},
-        "sap.f": {}
+        "sap.fe.templates": {}
       }
     },
     "contentDensities": {
@@ -95,37 +94,27 @@
       "css": []
     },
     "routing": {
-      "config": {
-        "flexibleColumnLayout": {
-          "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
-        },
-        "routerClass": "sap.f.routing.Router"
-      },
+      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
           "name": "ProjectsList",
-          "target": [
-            "ProjectsList"
-          ]
+          "target": "ProjectsList"
         },
         {
           "pattern": "Projects({key}):?query:",
           "name": "ProjectsObjectPage",
-          "target": [
-            "ProjectsList",
-            "ProjectsObjectPage"
-          ]
+          "target": "ProjectsObjectPage"
         },
         {
           "pattern": "Projects({key})/positions({key2}):?query:",
           "name": "PositionsObjectPage",
-          "target": [
-            "ProjectsList",
-            "ProjectsObjectPage",
-            "PositionsObjectPage"
-          ]
+          "target": "PositionsObjectPage"
+        },
+        {
+          "name": "Projects_positions_tasksObjectPage",
+          "pattern": "Projects({key})/positions({key2})/tasks({tasksKey}):?query:",
+          "target": "Projects_positions_tasksObjectPage"
         }
       ],
       "targets": {
@@ -135,9 +124,6 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "inlineEdit": {
-                "disabledFields": []
-              },
               "contextPath": "/Projects",
               "variantManagement": "Page",
               "navigation": {
@@ -153,12 +139,9 @@
                     "type": "ResponsiveTable"
                   }
                 }
-              },
-              "initialLoad": "Enabled"
+              }
             }
-          },
-          "controlAggregation": "beginColumnPages",
-          "contextPattern": ""
+          }
         },
         "ProjectsObjectPage": {
           "type": "Component",
@@ -176,9 +159,7 @@
                 }
               }
             }
-          },
-          "controlAggregation": "midColumnPages",
-          "contextPattern": "/Projects({key})"
+          }
         },
         "PositionsObjectPage": {
           "type": "Component",
@@ -187,19 +168,29 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Projects/positions"
+              "contextPath": "/Projects/positions",
+              "navigation": {
+                "tasks": {
+                  "detail": {
+                    "route": "Projects_positions_tasksObjectPage"
+                  }
+                }
+              }
             }
-          },
-          "controlAggregation": "endColumnPages",
-          "contextPattern": "/Projects({key})/positions({key2})"
+          }
+        },
+        "Projects_positions_tasksObjectPage": {
+          "type": "Component",
+          "id": "Projects_positions_tasksObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "navigation": {},
+              "contextPath": "/Projects/positions/tasks"
+            }
+          }
         }
       }
-    },
-    "rootView": {
-      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
-      "type": "XML",
-      "async": true,
-      "id": "appRootView"
     }
   },
   "sap.fiori": {

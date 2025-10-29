@@ -1,6 +1,4 @@
 using ManagerService as service from '../../../srv/manager-service';
-
-
 annotate service.Projects with @(
 
     UI.SelectionFields:[
@@ -104,6 +102,9 @@ annotate service.Projects with @(
 );
 
 
+annotate service.Positions with {
+  supplier_ID @UI.hidden : true;
+};
 
 
 annotate service.Positions with @(
@@ -150,7 +151,22 @@ annotate service.Positions with @(
             Label: 'Status',
             Value : status,
             Criticality: ColorCoding
-        }    
+        }, 
+        {
+            $Type: 'UI.DataField',
+            Label: 'Manager ID',
+            Value : project_manager_ID,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Buyer ID',
+            Value : buyer_ID,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Supplier ID',
+            Value : worker.contractorProfile.contractor.supplier_ID,
+        },    
     ],
     
 
@@ -187,8 +203,12 @@ annotate service.Positions with @(
                     Target : '@UI.FieldGroup#JobDescription',
                 },
             ],
-            
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target: 'tasks/@UI.LineItem',
+        },            
+            
     ],
 
     UI.Identification:[
@@ -255,6 +275,79 @@ annotate service.Positions with @(
         ],
     },
 );
+
+
+annotate service.Tasks with @(
+    UI.LineItem:[
+        {
+            $Type : 'UI.DataField',
+            Label: 'Task ID',
+            Value : ID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label: 'Description',
+            Value : description,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label: 'Billable',
+            Value : isBillable,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label: 'Position ID',
+            Value : position_ID,
+        },
+    ],
+    UI.HeaderInfo:{
+        TypeName : 'Task',
+        TypeNamePlural : 'Tasks',
+        Title:{
+            $Type : 'UI.DataField',
+            Value : ID,
+        },
+    },
+
+    UI.Facets:[
+        {
+            $Type : 'UI.CollectionFacet',
+            Label: 'Task Details',
+            Facets : [
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    Label : 'Task Information',
+                    Target : '@UI.Identification',
+                },
+            ],
+        },           
+            
+    ],
+
+    UI.Identification:[
+        {
+            $Type : 'UI.DataField',
+            Label: 'Task ID',
+            Value : ID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label: 'Description',
+            Value : ID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label: 'Billable',
+            Value : isBillable,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label: 'Position ID',
+            Value : position_ID,
+        },
+    ]
+);
+
 
 annotate service.Projects with {
     project_manager_ID @Common.ValueList : {
@@ -382,4 +475,3 @@ annotate service.Projects with {
         ],
     }
 };
-

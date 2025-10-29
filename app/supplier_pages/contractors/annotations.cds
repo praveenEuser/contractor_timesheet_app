@@ -1,5 +1,12 @@
 using SupplierService as service from '../../../srv/supplier-service';
 annotate service.Contractor with @(
+
+    UI.DataPoint #Rating :{
+        Value : rate,
+        TargetValue : 5,
+        Visualization : #Rating,
+    },
+
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
         Data : [
@@ -19,10 +26,10 @@ annotate service.Contractor with @(
                 Value : experience,
             },
             {
-                $Type : 'UI.DataField',
-                Label : 'rate',
-                Value : rate,
-            },
+            $Type : 'UI.DataField',
+            Label : 'rate',
+            Value : rate,
+        },
             {
                 $Type : 'UI.DataField',
                 Label : 'Upload Resume',
@@ -33,8 +40,14 @@ annotate service.Contractor with @(
                 Label : 'File Name',
                 Value : resumeName,
             },
+            {
+                $Type : 'UI.DataFieldWithUrl',
+                Label : 'Supplier ID',
+                Value : supplier_ID,
+            },
         ],
     },
+
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
@@ -60,9 +73,9 @@ annotate service.Contractor with @(
             Value : experience,
         },
         {
-            $Type : 'UI.DataField',
-            Label : 'rate',
-            Value : rate,
+                $Type : 'UI.DataFieldForAnnotation',
+                Label : 'Rate',
+                Target : '@UI.DataPoint#Rating'
         },
         {
                 $Type : 'UI.DataFieldWithUrl',
@@ -77,3 +90,21 @@ annotate service.Contractor with @(
     ],
 );
 
+
+annotate service.Contractor with {
+    supplier_ID @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'Supplier',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : supplier_ID,
+                ValueListProperty : 'ID',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'supplier_name',
+            }
+        ],
+    }
+};

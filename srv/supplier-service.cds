@@ -39,14 +39,16 @@ service SupplierService @(path: 'Supplier_Service') {
     )as projection on ct.Contractors;
 
     // Expose timesheet entries so suppliers can view status
-    entity TimesheetEntries as projection on ct.TimesheetEntry {
-        ID,
-        worker,          // association to Worker
-        project,         // association to Project
-        date,
-        hoursWorked,
-        status,          // this is the key field suppliers need
-        percentComplete,
-        costTaken
-    };
+    // entity TimesheetEntries as projection on ct.TimesheetEntry {
+    //     ID,
+    //     worker,          // association to Worker
+    //     project,         // association to Project
+    //     date,
+    //     hoursWorked,
+    //     status,          // this is the key field suppliers need
+    //     percentComplete,
+    //     costTaken
+    // };
+
+    entity Supplier as projection on ct.Supplier;
 }

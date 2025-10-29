@@ -13,7 +13,7 @@ sap.ui.define([
             title: "Projects",
             subtitle: "Project Details",
             icon: "sap-icon://activity-assigned-to-goal",
-            url: "/buyer_pages/projects/webapp/index.html"
+            url: "/buyer_pages/assign_workers/webapp/index.html"
           },
           {
             title: "Contractor Requests",

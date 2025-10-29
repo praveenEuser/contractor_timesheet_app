@@ -1,0 +1,177 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.contractor.taskassign.taskassign",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.19.3",
+      "toolsId": "cd861225-13ad-46a0-b8d1-cad267bcb6a4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/WorkerTastAssign_Service/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Task_Assingment-display": {
+          "semanticObject": "Task_Assingment",
+          "action": "display",
+          "title": "{{Task_Assingment-display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.141.3",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.contractor.taskassign.taskassign.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "TasksList",
+          "target": "TasksList"
+        },
+        {
+          "pattern": "Tasks({key}):?query:",
+          "name": "TasksObjectPage",
+          "target": "TasksObjectPage"
+        },
+        {
+          "pattern": "Tasks({key})/assignments({key2}):?query:",
+          "name": "TaskAssignmentObjectPage",
+          "target": "TaskAssignmentObjectPage"
+        }
+      ],
+      "targets": {
+        "TasksList": {
+          "type": "Component",
+          "id": "TasksList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Tasks",
+              "variantManagement": "Page",
+              "navigation": {
+                "Tasks": {
+                  "detail": {
+                    "route": "TasksObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "TasksObjectPage": {
+          "type": "Component",
+          "id": "TasksObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Tasks",
+              "navigation": {
+                "assignments": {
+                  "detail": {
+                    "route": "TaskAssignmentObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "TaskAssignmentObjectPage": {
+          "type": "Component",
+          "id": "TaskAssignmentObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Tasks/assignments"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

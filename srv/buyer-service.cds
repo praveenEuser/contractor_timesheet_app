@@ -40,6 +40,7 @@ service Buyer @(path: 'Buyer_Service') {
         contractor_req
     };
 
+
     
 
 
@@ -60,7 +61,23 @@ service Buyer @(path: 'Buyer_Service') {
     entity Currencies as projection on cc.Currencies;
 
     
+    // entity Worker @(
+    //     odata.draft.enabled: true
+    // )as projection on ct.Worker{
+    //     ID,
+    //     supplier_ID,
+    //     assignedProject_ID,
+    //     contractorProfile_ID,
+    //     assignedPosition_ID,
+        
 
+    //     assignedPosition.ID           as position_ID,
+    //     assignedPosition.project_ID   as project_ID,
+    //     assignedPosition.buyer_ID     as buyer_ID,
+    //     assignedPosition.project_manager_ID as project_manager_ID,
+
+    //     *,
+    // };
     
 
 }

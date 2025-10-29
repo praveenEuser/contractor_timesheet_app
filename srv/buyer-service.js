@@ -112,9 +112,16 @@ module.exports = cds.service.impl(async function() {
 
 
 
-        
-
-
+        this.after(['CREATE', 'UPDATE'], 'Positions', async (position, req) => {
+            if (position.worker_ID) {
+                await cds.update('com.contractor.timesheet.Worker').set({
+                assignedPosition_ID: position.ID,
+                assignedProject_ID: position.project_ID,
+                supplier_ID: position.supplier_ID,
+                assigned_ProjectManager: position.project_manager_ID
+                }).where({ ID: position.worker_ID });
+            }
+        });
 
         
 

@@ -1,0 +1,13 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="com.contractor.assignworkers.controller.PositionsObjectPageExtension">
+
+  <MultiInput
+    id="multiWorkerInput"
+    showValueHelp="true"
+    valueHelpRequest="onWorkerValueHelp"
+    placeholder="Select workers..."
+    tokens="{/selectedTokens}"/>
+
+</mvc:View>

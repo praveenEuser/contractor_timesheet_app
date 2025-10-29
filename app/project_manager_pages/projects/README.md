@@ -1,9 +1,9 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Fri Oct 17 2025 11:08:05 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Mon Oct 27 2025 07:31:29 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.19.1|
+|**App Generator Version**<br>1.19.3|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local CAP|
@@ -12,7 +12,7 @@
 |**Application Title**<br>Projects|
 |**Namespace**<br>com.contractor.projects|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.141.1|
+|**UI5 Version**<br>1.141.3|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
@@ -21,7 +21,7 @@
 
 ## projects
 
-Projects Page
+Projects
 
 ### Starting the generated app
 

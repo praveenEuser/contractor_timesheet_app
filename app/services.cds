@@ -14,14 +14,7 @@ using from './project_manager_dashboard/annotations';
 
 using from './supplier/annotations';
 
-using from './worker/annotations';
-
-using from './project_manager_pages/projects/annotations';
-
-
 using from './buyer_dashboard/annotations';
-
-using from './buyer_pages/projects/annotations';
 
 using from './supplier_pages/contractors/annotations';
 
@@ -30,3 +23,11 @@ using from './supplier_dashboard/annotations';
 using from './buyer_pages/contractor_requests/annotations';
 
 using from './supplier_pages/check_contractor_requests/annotations';
+
+using from './buyer_pages/assign_workers/annotations';
+
+using from './project_manager_pages/projects/annotations';
+
+using from './timesheet/annotations';
+
+using from './project_manager_pages/task_assign/annotations';

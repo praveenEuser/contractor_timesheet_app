@@ -1,29 +1,27 @@
 using { com.contractor.timesheet as ct } from '../db/contractor-model';
 
-service WorkerService @(path: 'Worker_Service') {
+
+service WorkerService @(path: 'Timesheet_Service') {
 
     // Expose workers themselves
+    @readonly
     entity Workers as projection on ct.Worker;
 
     // Expose timesheet entries for workers
-    entity TimesheetEntries as projection on ct.TimesheetEntry {
-        ID,
-        worker,          // association to Worker
-        project,         // association to Project
-        date,
-        hoursWorked,
-        status,
-        percentComplete,
-        costTaken
+    entity TimeSheetEntity @(
+        odata.draft.enabled : true
+    )as projection on ct.WorkerTimeSheet{
+        @readyonly worker_ID,
+        //@readonly totalhours,
+        *,
     };
 
     // Expose projects for reference
-    entity Projects as projection on ct.Project {
-        ID,
-        project_name,
-        startDate,
-        endDate,
-        plannedHours,
-        positions.hourlyRate
-    };
+    entity ProjectsEntity as projection on ct.Project;
+
+    entity PositionsEntity as projection on ct.Positions_roles;
+
+    entity TimeEntryEntity as projection on ct.TimeEntry;
+
+    entity TasksEntity as projection on ct.Task;
 }
