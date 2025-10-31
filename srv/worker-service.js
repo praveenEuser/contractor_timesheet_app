@@ -5,7 +5,7 @@ module.exports = cds.service.impl(async function() {
   const { TimeSheetEntity, TimeEntryEntity, WorkerTimeSheet } = this.entities;
 
   this.before('CREATE', 'TimeSheetEntity', (req) => {
-    req.data.worker_ID = '2faa30fb-e6c3-442c-8778-729d88f6c15d'; // For dev/testing
+    req.data.worker_ID = '6409eb4f-43ad-4f05-98fb-6ab858ec96f3'; // For dev/testing
   });
 
 //   this.before(['CREATE', 'UPDATE'], 'TimeEntryEntity', async req => {

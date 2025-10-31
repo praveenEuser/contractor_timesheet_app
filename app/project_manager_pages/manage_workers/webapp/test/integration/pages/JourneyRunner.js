@@ -1,15 +1,17 @@
 sap.ui.define([
     "sap/fe/test/JourneyRunner",
-	"com/contractor/managerworkers/manageworkers/test/integration/pages/WorkersList",
-	"com/contractor/managerworkers/manageworkers/test/integration/pages/WorkersObjectPage"
-], function (JourneyRunner, WorkersList, WorkersObjectPage) {
+	"com/contractor/manageworkers/manageworkers/test/integration/pages/WorkersList",
+	"com/contractor/manageworkers/manageworkers/test/integration/pages/WorkersObjectPage",
+	"com/contractor/manageworkers/manageworkers/test/integration/pages/TimesheetObjectPage"
+], function (JourneyRunner, WorkersList, WorkersObjectPage, TimesheetObjectPage) {
     'use strict';
 
     var runner = new JourneyRunner({
-        launchUrl: sap.ui.require.toUrl('com/contractor/managerworkers/manageworkers') + '/test/flp.html#app-preview',
+        launchUrl: sap.ui.require.toUrl('com/contractor/manageworkers/manageworkers') + '/test/flp.html#app-preview',
         pages: {
 			onTheWorkersList: WorkersList,
-			onTheWorkersObjectPage: WorkersObjectPage
+			onTheWorkersObjectPage: WorkersObjectPage,
+			onTheTimesheetObjectPage: TimesheetObjectPage
         },
         async: true
     });

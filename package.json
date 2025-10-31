@@ -27,7 +27,7 @@
     "watch-buyer": "cds watch --open com.contractor.buyer.buyer/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-buyer_dashboard": "cds watch --open com.contractor.buyerdashboard.buyerdashboard/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-positions": "cds watch --open com.contractor.position.positions/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-manage_workers": "cds watch --open com.contractor.managerworkers.manageworkers/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-manage_workers": "cds watch --open com.contractor.manageworkers.manageworkers/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-project_manager_dashboard": "cds watch --open com.contractor.projectmanagerdashboard.projectmanagerdashboard/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-supplier": "cds watch --open com.contractor.supplier.supplier/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-worker": "cds watch --open com.contractor.worker.worker/index.html?sap-ui-xx-viewCache=false --livereload false",
@@ -38,7 +38,8 @@
     "watch-check_contractor_requests": "cds watch --open com.contractor.checkcontractorrequests.checkcontractorrequests/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-assign_workers": "cds watch --open com.contractor.assignworkers.assignworkers/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-timesheet": "cds watch --open com.contractor.timesheet.timesheet/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-task_assign": "cds watch --open com.contractor.taskassign.taskassign/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-task_assign": "cds watch --open com.contractor.taskassign.taskassign/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "main": "index.js",
@@ -94,6 +95,10 @@
     "app/projects",
     "app/timesheet",
     "app/task_assign",
-    "app/task_assign"
+    "app/task_assign",
+    "app/manage_workers",
+    "app/project1",
+    "app/manage_workers",
+    "app/manage_workers"
   ]
 }

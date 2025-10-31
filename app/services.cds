@@ -8,8 +8,6 @@ using from './admin_pages/suppliers/annotations';
 
 using from './admin_pages/workers/annotations';
 
-using from './project_manager_pages/manage_workers/annotations';
-
 using from './project_manager_dashboard/annotations';
 
 using from './supplier/annotations';
@@ -31,3 +29,5 @@ using from './project_manager_pages/projects/annotations';
 using from './timesheet/annotations';
 
 using from './project_manager_pages/task_assign/annotations';
+
+using from './project_manager_pages/manage_workers/annotations';

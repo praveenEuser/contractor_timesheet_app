@@ -1,22 +1,23 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Thu Oct 16 2025 10:00:46 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Thu Oct 30 2025 07:32:36 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.19.1|
+|**App Generator Version**<br>1.19.3|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local CAP|
 |**Service URL**<br>http://localhost:4004/odata/v4/Manager_Service/|
 |**Module Name**<br>manage_workers|
 |**Application Title**<br>Manage Workers|
-|**Namespace**<br>com.contractor.manager_workers|
+|**Namespace**<br>com.contractor.manage_workers|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.141.1|
+|**UI5 Version**<br>1.141.3|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
 |**Main Entity**<br>Workers|
+|**Navigation Entity**<br>timeSheets|
 
 ## manage_workers
 
@@ -26,7 +27,7 @@ Manage Workers
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  To launch the generated app, start your CAP project:  and navigate to the following location in your browser:
 
-http://localhost:4004/com.contractor.managerworkers.manageworkers/index.html
+http://localhost:4004/com.contractor.manageworkers.manageworkers/index.html
 
 #### Pre-requisites:
 

@@ -142,7 +142,7 @@ entity Worker:cuid {
     assigned_ProjectManager: Association to ProjectManager;
     assignedPosition : Association to Positions_roles on assignedPosition.ID = assignedPosition_ID;
     contractorProfile: Association to ContractorProfile on contractorProfile.ID = contractorProfile_ID @title : '{i18n>contractorProfile}';
-    timeSheets : Association to many WorkerTimeSheet on timeSheets.worker_ID = $self.ID;
+    timeSheets : Composition of many WorkerTimeSheet on timeSheets.worker_ID = $self.ID;
 }
 
 entity Contractors: cuid,managed{
@@ -185,6 +185,7 @@ entity WorkerTimeSheet : cuid, managed {
     weekEnd     : Date;
     totalhours : Decimal(4,2);
     status      : String enum { Pending; Approved; Rejected} default 'Pending' ;
+    rejectedreason : String(2000);
     comments    : String(2000);
 
     timeEntries : Composition of many TimeEntry on timeEntries.timesheet_ID = $self.ID;
@@ -195,9 +196,8 @@ entity TimeEntry : cuid, managed {
     timesheet_ID : UUID;
     timesheet           : Association to WorkerTimeSheet on timesheet.ID = timesheet_ID;
     workDate            : Date;
-    task_ID             : UUID;
-    task                : Association to Task on task.ID = task_ID;
-    billable            : Boolean;
+    tasks_ID             : UUID;
+    tasks                : Association to WorkerTaskAssignment on tasks.ID = tasks_ID;
     hours               : Decimal(4,2);
     notes               : String(255);
 }

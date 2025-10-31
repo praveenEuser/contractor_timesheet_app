@@ -32,6 +32,11 @@ annotate service.TimeSheetEntity with @(
             },
             {
                 $Type : 'UI.DataField',
+                Label : 'RejectReason',
+                Value : rejectedreason,
+            },
+            {
+                $Type : 'UI.DataField',
                 Label : 'comments',
                 Value : comments,
             },
@@ -77,6 +82,11 @@ annotate service.TimeSheetEntity with @(
         },
         {
             $Type : 'UI.DataField',
+            Label : 'RejectReason',
+            Value : rejectedreason,
+        },
+        {
+            $Type : 'UI.DataField',
             Label : 'comments',
             Value : comments,
         },
@@ -98,13 +108,18 @@ annotate service.TimeEntryEntity with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Billable',
-            Value : task.isBillable
+            Label : 'Task Assign ID',
+            Value : tasks_ID
         },
         {
             $Type : 'UI.DataField',
             Label : 'Task ID',
-            Value : task_ID
+            Value : w_task
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Billable',
+            Value : tasks.t_billable
         },
         {
             $Type : 'UI.DataField',
@@ -130,7 +145,7 @@ annotate service.TimeEntryEntity with @(
             Facets: [
                 {
                     $Type: 'UI.ReferenceFacet',
-                    Label: 'Project Details',
+                    Label: 'Daily Entry',
                     Target: '@UI.Identification'
                 },
                 // {
@@ -159,13 +174,13 @@ annotate service.TimeEntryEntity with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Billable',
-            Value : task.isBillable
+            Label : 'Task Assign ID',
+            Value : tasks_ID
         },
         {
             $Type : 'UI.DataField',
             Label : 'Task ID',
-            Value : task_ID
+            Value : w_task
         },
         {
             $Type : 'UI.DataField',
@@ -176,22 +191,27 @@ annotate service.TimeEntryEntity with @(
 );
 
 annotate service.TimeEntryEntity with {
-    task_ID @Common.ValueList : {
+    tasks_ID @Common.ValueList : {
         $Type : 'Common.ValueListType',
-        CollectionPath : 'TasksEntity',
+        CollectionPath : 'WorkerTask',
         Parameters : [
             {
                 $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : task_ID,
+                LocalDataProperty : tasks_ID,
                 ValueListProperty : 'ID',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'description',
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : w_task,
+                ValueListProperty : 'task_ID',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'isBillable',
+                ValueListProperty : 't_description',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 't_billable',
             },
         ],
     }

@@ -333,7 +333,7 @@ annotate service.Tasks with @(
         {
             $Type : 'UI.DataField',
             Label: 'Description',
-            Value : ID,
+            Value : description,
         },
         {
             $Type : 'UI.DataField',

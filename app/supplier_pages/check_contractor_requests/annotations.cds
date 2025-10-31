@@ -53,9 +53,8 @@ annotate service.RequestSuppliers with @(
         TypeName: 'Contractor Request',
         TypeNamePlural : 'Contractor Requests',
         Title:{
-            $Type : 'UI.DataField',
-            Label : 'ID',
-            Value : ID,
+            Label : 'Conrtactor Requests',
+            Value : c_request.position.roles
         },
     },
     UI.Facets : [

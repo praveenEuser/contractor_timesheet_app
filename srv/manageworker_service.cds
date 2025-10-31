@@ -2,13 +2,9 @@ using { com.contractor.timesheet as ct } from '../db/contractor-model';
 using { sap.common as cc } from '@sap/cds/common';
 
 
-service ManagerService @(path : 'Manager_Service') {
-    entity Buyers @(
-        odata.draft.enabled : true
-    )as projection on ct.Buyer;
-    entity Projects @(
-        odata.draft.enabled : true
-    )as projection on ct.Project{
+service ManageWorkerService @(path : 'ManageWorker_Service') {
+    entity Buyers as projection on ct.Buyer;
+    entity Projects as projection on ct.Project{
         *,
         positions
     };
@@ -33,21 +29,35 @@ service ManagerService @(path : 'Manager_Service') {
         tasks
     };
 
-    entity Contractor as projection on ct.Contractors;
+    entity Contractor as projection on ct.Contractors{
+        @readonly co_name,
+        *,
+    };
 
     entity Currencies as projection on cc.Currencies;
-    entity Suppliers @(
-        odata.draft.enabled : true
-    ) as projection on ct.Supplier;
+    entity Suppliers as projection on ct.Supplier;
     
-    entity Workers as projection on ct.Worker;
+    entity Workers @(
+        odata.draft.enabled : true
+    )as projection on ct.Worker{
+        @readonly ID,
+        *,
+    };
 
     entity Tasks as projection on ct.Task{
         *,
         assignments
     };
 
-    entity Timesheet as projection on ct.WorkerTimeSheet;
+    entity Timesheet as projection on ct.WorkerTimeSheet{
+        @readonly worker_ID,
+        @readonly weekStart,
+        @readonly weekEnd,
+        //@readonly comments,
+        @readonly comments,
+
+        *,
+    };
     entity TimeEntry as projection on ct.TimeEntry;
 
     entity WorkerTaskAssignment as projection on ct.WorkerTaskAssignment;
