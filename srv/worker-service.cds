@@ -17,7 +17,7 @@ service WorkerService @(path: 'Timesheet_Service', requires: 'authenticated-user
         ]
     )as projection on ct.WorkerTimeSheet{
         @readonly rejectedreason,
-        @readyonly worker_ID,
+        @readonly worker_ID,
         //@readonly totalhours,
         *,
     };

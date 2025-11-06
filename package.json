@@ -57,6 +57,10 @@
   "homepage": "https://github.com/praveenEuser/contractor_timesheet_app#readme",
   "cds": {
     "requires": {
+      "db": "hana",
+      "uaa": {
+        "kind": "xsuaa"
+      },
       "auth": {
         "[development]": {
           "strategy": "mock",
@@ -75,6 +79,17 @@
               "userAttributes": {
                 "WorkerID": [
                   "6409eb4f-43ad-4f05-98fb-6ab858ec96f3"
+                ]
+              }
+            },
+            "kumar": {
+              "password": "sasumira",
+              "roles": [
+                "SupplierRole"
+              ],
+              "userAttributes": {
+                "SupplierID": [
+                  "e8dc4e6e-d341-41b9-ad1e-834d30642b24"
                 ]
               }
             }

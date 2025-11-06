@@ -3,29 +3,49 @@
   "sessionTimeout": 10,
   "routes": [
     {
-      "source": "^/admin_pages/(.*)$",
+      "source": "^/admin_dashboard/webapp/(.*)$",
       "target": "$1",
-      "localDir": "admin_pages",
+      "localDir": "admin_dashboard/webapp/",
       "authenticationType": "xsuaa",
       "csrfProtection": false,
-      "scope": [
-        "$XSAPPNAME.AdminRole"
-      ]
+      "scope": ["$XSAPPNAME.AdminRole"]
     },
     {
-      "source": "^/admin_dashboard/(.*)$",
+      "source": "^/admin_pages/managers/webapp/(.*)$",
       "target": "$1",
-      "localDir": "admin_dashboard/webapp",
+      "localDir": "admin_pages/managers/webapp/",
       "authenticationType": "xsuaa",
       "csrfProtection": false,
-      "scope": [
-        "$XSAPPNAME.AdminRole"
-      ]
+      "scope": ["$XSAPPNAME.AdminRole"]
     },
     {
-      "source": "^/buyer_dashboard/(.*)$",
+      "source": "^/admin_pages/suppliers/webapp/(.*)$",
       "target": "$1",
-      "localDir": "buyer_dashboard/webapp",
+      "localDir": "admin_pages/suppliers/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.AdminRole"]
+    },
+    {
+      "source": "^/admin_pages/buyers/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "admin_pages/buyers/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.AdminRole"]
+    },
+    {
+      "source": "^/admin_pages/workers/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "admin_pages/workers/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.AdminRole"]
+    },
+    {
+      "source": "^/buyer_dashboard/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "buyer_dashboard/webapp/",
       "authenticationType": "xsuaa",
       "csrfProtection": false,
       "scope": [
@@ -33,9 +53,25 @@
       ]
     },
     {
-      "source": "^/supplier_dashboard/(.*)$",
+      "source": "^/buyer_pages/assign_workers/webapp/(.*)$",
       "target": "$1",
-      "localDir": "supplier_dashboard/webapp",
+      "localDir": "buyer_pages/assign_workers/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.BuyerRole"]
+    },
+    {
+      "source": "^/buyer_pages/contractor_requests/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "buyer_pages/contractor_requests/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.BuyerRole"]
+    },
+    {
+      "source": "^/supplier_dashboard/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "supplier_dashboard/webapp/",
       "authenticationType": "xsuaa",
       "csrfProtection": false,
       "scope": [
@@ -43,9 +79,25 @@
       ]
     },
     {
-      "source": "^/project_manager_dashboard/(.*)$",
+      "source": "^/supplier_pages/check_contractor_requests/webapp/(.*)$",
       "target": "$1",
-      "localDir": "project_manager_dashboard/webapp",
+      "localDir": "supplier_pages/check_contractor_requests/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.SupplierRole"]
+    },
+    {
+      "source": "^/supplier_pages/contractors/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "supplier_pages/contractors/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.SupplierRole"]
+    },
+    {
+      "source": "^/project_manager_dashboard/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "project_manager_dashboard/webapp/",
       "authenticationType": "xsuaa",
       "csrfProtection": false,
       "scope": [
@@ -53,9 +105,33 @@
       ]
     },
     {
-      "source": "^/timesheet/(.*)$",
+      "source": "^/project_manager_pages/manage_workers/webapp/(.*)$",
       "target": "$1",
-      "localDir": "timesheet/webapp",
+      "localDir": "project_manager_pages/manage_workers/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.ProjectManagerRole"]
+    },
+    {
+      "source": "^/project_manager_pages/projects/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "project_manager_pages/projects/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.ProjectManagerRole"]
+    },
+    {
+      "source": "^/project_manager_pages/task_assign/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "project_manager_pages/task_assign/webapp/",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": ["$XSAPPNAME.ProjectManagerRole"]
+    },
+    {
+      "source": "^/timesheet/webapp/(.*)$",
+      "target": "$1",
+      "localDir": "timesheet/webapp/",
       "authenticationType": "xsuaa",
       "csrfProtection": false,
       "scope": [
@@ -63,7 +139,7 @@
       ]
     },
     {
-      "source": "^/srv/(.*)$",
+      "source": "^/(.*)$",
       "target": "$1",
       "destination": "srv-api",
       "authenticationType": "xsuaa",
