@@ -1,0 +1,114 @@
+{
+  "xsappname": "contractor-timesheet",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.AdminRole",
+      "description": "Admin role - can add buyer, manager and supplier"
+    },
+    {
+      "name": "$XSAPPNAME.BuyerRole",
+      "description": "Buyer role - create contractor requests and assign workers"
+    },
+    {
+      "name": "$XSAPPNAME.SupplierRole",
+      "description": "Supplier role - respond to received contractor requests and add contractors"
+    },
+    {
+      "name": "$XSAPPNAME.ProjectManagerRole",
+      "description": "Project manager role - create project, positions, tasks and manage workers"
+    },
+    {
+      "name": "$XSAPPNAME.WorkerRole",
+      "description": "Worker role - can do timesheet entries"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "ManagerID",
+      "description": "Manager identifier",
+      "valueType": "string"
+    },
+    {
+      "name": "BuyerID",
+      "description": "Buyer identifier",
+      "valueType": "string"
+    },
+    {
+      "name": "SupplierID",
+      "description": "Supplier identifier",
+      "valueType": "string"
+    },
+    {
+      "name": "WorkerID",
+      "description": "Worker identifier",
+      "valueType": "string"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "AdminRole",
+      "description": "Admin role with full permissions",
+      "scope-references": [
+        "$XSAPPNAME.AdminRole"
+      ]
+    },
+    {
+      "name": "BuyerRole",
+      "description": "Buyer role with limited access",
+      "scope-references": [
+        "$XSAPPNAME.BuyerRole"
+      ],
+      "attribute-references": [
+        {
+          "name": "BuyerID"
+        }
+      ]
+    },
+    {
+      "name": "SupplierRole",
+      "description": "Supplier role with limited access",
+      "scope-references": [
+        "$XSAPPNAME.SupplierRole"
+      ],
+      "attribute-references": [
+        {
+          "name": "SupplierID"
+        }
+      ]
+    },
+    {
+      "name": "ProjectManagerRole",
+      "description": "Project Manager role with limited access",
+      "scope-references": [
+        "$XSAPPNAME.ProjectManagerRole"
+      ],
+      "attribute-references": [
+        {
+          "name": "ManagerID"
+        }
+      ]
+    },
+    {
+      "name": "WorkerRole",
+      "description": "Worker role with limited access",
+      "scope-references": [
+        "$XSAPPNAME.WorkerRole"
+      ],
+      "attribute-references": [
+        {
+          "name": "WorkerID"
+        }
+      ]
+    }
+  ],
+  "authorities": [
+    "$ACCEPT_GRANTED_AUTHORITIES"
+  ],
+  "oauth2-configuration": {
+                    "token-validity": 900, 
+                    "refresh-token-validity": 1800,
+                    "redirect-uris": ["https://*.cfapps.us10-001.hana.ondemand.com/login/callback"]
+ },
+  "xsenableasyncservice": true
+}

@@ -4,9 +4,9 @@ module.exports = cds.service.impl(async function() {
 
   const { TimeSheetEntity, TimeEntryEntity, WorkerTimeSheet } = this.entities;
 
-  this.before('CREATE', 'TimeSheetEntity', (req) => {
-    req.data.worker_ID = '6409eb4f-43ad-4f05-98fb-6ab858ec96f3'; // For dev/testing
-  });
+  // this.before('CREATE', 'TimeSheetEntity', (req) => {
+  //   req.data.workerID = req.user.attr.WorkerID;
+  // });
 
 //   this.before(['CREATE', 'UPDATE'], 'TimeEntryEntity', async req => {
 //     console.log("[CAP HOOK] TimeEntry hook called. req.data:", req.data);

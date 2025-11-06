@@ -2,28 +2,39 @@ using { com.contractor.timesheet as ct } from '../db/contractor-model';
 using { sap.common as cc } from '@sap/cds/common';
 
 
-service Buyer @(path: 'Buyer_Service') {
+service Buyer @(path: 'Buyer_Service',requires: 'authenticated-user') {
 
-    entity ContractorRequestEntity as projection on ct.ContractorRequest{
+    entity ContractorRequestEntity @(restrict: [
+      { grant: '*', to: ['BuyerRole'], where: 'requestedBy_ID = $user.BuyerID' }
+    ])as projection on ct.ContractorRequest{
         @readonly position.buyer.buyer_name,
         *,
         position : Association to Positions on position.ID = position_ID,
         requestsupplier
     }; 
-    entity ProjectsEntity as projection on ct.Project;
+    entity ProjectsEntity @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ])as projection on ct.Project;
 
-    entity Suppliers as projection on ct.Supplier{
+    entity Suppliers @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ])as projection on ct.Supplier{
         @readonly supplier_name,
         *,
     };
 
-    entity Buyers as projection on ct.Buyer{
+    entity Buyers @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ])as projection on ct.Buyer{
         @readonly buyer_name,
         *,
     };
 
     entity Positions @(
-        odata.draft.enabled: true
+        odata.draft.enabled: true,
+        restrict: [
+            { grant: '*', to: ['BuyerRole'], where: 'buyer_ID = $user.BuyerID' }
+        ]
     )as projection on ct.Positions_roles{
         @readonly ID,
         @readonly roles,
@@ -44,21 +55,29 @@ service Buyer @(path: 'Buyer_Service') {
     
 
 
-    entity RequestSuppliers  as projection on ct.RequestSuppliers{
+    entity RequestSuppliers @(restrict: [
+      { grant: '*', to: ['BuyerRole']}
+    ]) as projection on ct.RequestSuppliers{
         @readonly status,
         *,
     };
 
 
-    entity ContractorProfile as projection on ct.ContractorProfile{
+    entity ContractorProfile @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ]) as projection on ct.ContractorProfile{
         @readonly contractor_ID,
         *,
     };
 
     @readonly
-    entity Contractor as projection on ct.Contractors;
+    entity Contractor @(restrict: [
+      { grant: 'READ', to: ['BuyerRole'] }
+    ]) as projection on ct.Contractors;
 
-    entity Currencies as projection on cc.Currencies;
+    entity Currencies @(restrict: [
+      { grant: 'READ', to: ['BuyerRole'] }
+    ]) as projection on cc.Currencies;
 
     
     // entity Worker @(

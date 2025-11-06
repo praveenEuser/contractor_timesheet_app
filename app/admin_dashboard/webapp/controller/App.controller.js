@@ -26,13 +26,13 @@ sap.ui.define([
             subtitle: "Buyer details",
             icon: "sap-icon://customer",
             url: "/admin_pages/buyers/webapp/index.html"
-          },
-          {
-            title: "Workers",
-            subtitle: "Worker information",
-            icon: "sap-icon://employee",
-            url: "/admin_pages/workers/webapp/index.html"
           }
+          // {
+          //   title: "Workers",
+          //   subtitle: "Worker information",
+          //   icon: "sap-icon://employee",
+          //   url: "/admin_pages/workers/webapp/index.html"
+          // }
         ]
       });
 

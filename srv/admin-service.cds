@@ -1,19 +1,31 @@
 using { com.contractor.timesheet as ct } from '../db/contractor-model';
 
 
-service Admin @(path : 'Admin_Service') {
+service Admin @(path : 'Admin_Service', requires: 'authenticated-user') {
 
     entity ManagerEntity @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['AdminRole'] }
+        ]
     ) as projection on ct.ProjectManager;
     entity BuyerEntity @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['AdminRole'] }
+        ]
     ) as projection on ct.Buyer;
     entity SupplierEntity @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['AdminRole'] }
+        ]
     ) as projection on ct.Supplier;
     entity WorkerEntity @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['AdminRole'] }
+        ]
     ) as projection on ct.Worker;
 
     entity Contractor as projection on ct.Contractors;

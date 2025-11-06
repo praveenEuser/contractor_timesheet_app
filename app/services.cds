@@ -10,8 +10,6 @@ using from './admin_pages/workers/annotations';
 
 using from './project_manager_dashboard/annotations';
 
-using from './supplier/annotations';
-
 using from './buyer_dashboard/annotations';
 
 using from './supplier_pages/contractors/annotations';

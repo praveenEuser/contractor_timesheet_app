@@ -1,17 +1,23 @@
 using { com.contractor.timesheet as ct } from '../db/contractor-model';
 using { sap.common as cc } from '@sap/cds/common';
 
-service BuyerAssignService @(path: 'BuyerAssign_Service'){
+service BuyerAssignService @(path: 'BuyerAssign_Service', requires: 'authenticated-user'){
 
     entity Buyers @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['BuyerRole'] }
+        ]
     )as projection on ct.Buyer{
         @readonly buyer_name,
         *,
     };
 
     entity Projects @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['BuyerRole'] }
+        ]
     ) as projection on ct.Project{
         @readonly project_name,
         @readonly plannedHours,
@@ -21,27 +27,29 @@ service BuyerAssignService @(path: 'BuyerAssign_Service'){
         *,
         positions
     };
-    entity ContractorRequests as projection on ct.ContractorRequest;
-    entity SelectedWorkers as projection on ct.ContractorProfile{
+    entity ContractorRequests @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ]) as projection on ct.ContractorRequest;
+    entity SelectedWorkers @(restrict: [
+      { grant: 'READ', to: ['BuyerRole'] }
+    ]) as projection on ct.ContractorProfile{
         contractor.co_name as co_name,
         *,
     } where status = 'Selected';
 
-    entity ProjectManagers as projection on ct.ProjectManager{
+    entity ProjectManagers @(restrict: [
+      { grant: 'READ', to: ['BuyerRole'] }
+    ]) as projection on ct.ProjectManager{
         @readonly Manager_name,
         *,
     };
-    // Supplier actions
-    action acceptRequest(requestID: UUID) returns String;
-    action ignoreRequest(requestID: UUID, reason: String) returns String;
 
-    // Manager actions
-    action approveContractorProfile(profileID: UUID) returns String;
-    action rejectContractorProfile(profileID: UUID) returns String;
 
     //entity TimesheetEntries as projection on ct.TimesheetEntry;
     
-    entity Positions as projection on ct.Positions_roles{
+    entity Positions @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ]) as projection on ct.Positions_roles{
         @readonly ID,
         @readonly roles,
         @readonly no_of_positions,
@@ -57,12 +65,20 @@ service BuyerAssignService @(path: 'BuyerAssign_Service'){
         workers,
     };
 
-    entity Currencies as projection on cc.Currencies;
-    entity Suppliers as projection on ct.Supplier;
+    entity Currencies @(restrict: [
+      { grant: 'READ', to: ['BuyerRole'] }
+    ]) as projection on cc.Currencies;
+    entity Suppliers @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ]) as projection on ct.Supplier;
     
-    entity Workers as projection on ct.Worker;
+    entity Workers @(restrict: [
+      { grant: '*', to: ['BuyerRole'] }
+    ]) as projection on ct.Worker;
 
-    entity Contractor as projection on ct.Contractors{
+    entity Contractor @(restrict: [
+      { grant: 'READ', to: ['BuyerRole'] }
+    ]) as projection on ct.Contractors{
         @readonly co_name,
         @readonly experience,
         @readonly skills,

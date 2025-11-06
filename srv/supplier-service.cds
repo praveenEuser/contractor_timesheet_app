@@ -1,41 +1,71 @@
 using { com.contractor.timesheet as ct } from '../db/contractor-model';
 
 
-service SupplierService @(path: 'Supplier_Service') {
+service SupplierService @(path: 'Supplier_Service', requires: 'authenticated-user') {
 
     // Expose contractor requests
     @readonly
-    entity ContractorRequests as projection on ct.ContractorRequest{
+    entity ContractorRequests @(
+        restrict: [
+            { grant: 'READ', to: ['SupplierRole'] }
+        ]
+    )as projection on ct.ContractorRequest{
         *,
         position : Association to Positions on position.ID = position_ID,
         requestsupplier
     };
 
     @readonly
-    entity ProjectManagers as projection on ct.ProjectManager;
+    entity ProjectManagers @(
+        restrict: [
+            { grant: 'READ', to: ['SupplierRole'] }
+        ]
+    ) as projection on ct.ProjectManager;
     @readonly
-    entity Projects as projection on ct.Project;
+    entity Projects @(
+        restrict: [
+            { grant: 'READ', to: ['SupplierRole'] }
+        ]
+    ) as projection on ct.Project;
     @readonly
-    entity Positions as projection on ct.Positions_roles;
+    entity Positions @(
+        restrict: [
+            { grant: 'READ', to: ['SupplierRole'] }
+        ]
+    ) as projection on ct.Positions_roles;
 
     entity RequestSuppliers @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['SupplierRole'], where: 'supplier_ID = $user.SupplierID' }
+        ]
     )as projection on ct.RequestSuppliers{
         *,
         responses
     };
 
     // Expose contractor profiles
-    entity ContractorProfiles as projection on ct.ContractorProfile;
+    entity ContractorProfiles @(restrict: [
+      { grant: '*', to: ['SupplierRole'], where: 'supplier_ID = $user.SupplierID' }
+    ]) as projection on ct.ContractorProfile;
 
     @readonly
-    entity Buyers as projection on ct.Buyer;
+    entity Buyers @(
+        restrict: [
+            { grant: 'READ', to: ['SupplierRole'] }
+        ]
+    ) as projection on ct.Buyer;
 
     // Expose workers linked to suppliers
-    entity Workers as projection on ct.Worker;
+    entity Workers @(restrict: [
+      { grant: '*', to: ['SupplierRole'] }
+    ]) as projection on ct.Worker;
 
     entity Contractor @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['SupplierRole'], where: 'supplier_ID = $user.SupplierID' }
+        ]
     )as projection on ct.Contractors;
 
     // Expose timesheet entries so suppliers can view status
@@ -50,5 +80,7 @@ service SupplierService @(path: 'Supplier_Service') {
     //     costTaken
     // };
 
-    entity Supplier as projection on ct.Supplier;
+    entity Supplier @(restrict: [
+        { grant: '*', to: ['SupplierRole'], where: 'ID = $user.SupplierID' }
+    ]) as projection on ct.Supplier;
 }

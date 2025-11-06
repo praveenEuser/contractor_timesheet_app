@@ -1,15 +1,20 @@
 using { com.contractor.timesheet as ct } from '../db/contractor-model';
 
 
-service WorkerService @(path: 'Timesheet_Service') {
+service WorkerService @(path: 'Timesheet_Service', requires: 'authenticated-user') {
 
     // Expose workers themselves
     @readonly
-    entity Workers as projection on ct.Worker;
+    entity Workers @(restrict: [
+      { grant: 'READ', to: ['WorkerRole'], where: 'ID = $user.WorkerID' }
+    ]) as projection on ct.Worker;
 
     // Expose timesheet entries for workers
     entity TimeSheetEntity @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['WorkerRole'], where: 'worker_ID = $user.WorkerID' }
+        ]
     )as projection on ct.WorkerTimeSheet{
         @readonly rejectedreason,
         @readyonly worker_ID,
@@ -18,19 +23,29 @@ service WorkerService @(path: 'Timesheet_Service') {
     };
 
     // Expose projects for reference
-    entity ProjectsEntity as projection on ct.Project;
+    entity ProjectsEntity @(restrict: [
+      { grant: 'READ', to: ['WorkerRole'] }
+    ]) as projection on ct.Project;
 
-    entity PositionsEntity as projection on ct.Positions_roles;
+    entity PositionsEntity @(restrict: [
+      { grant: 'READ', to: ['WorkerRole'] }
+    ]) as projection on ct.Positions_roles;
 
-    entity TimeEntryEntity as projection on ct.TimeEntry{
+    entity TimeEntryEntity @(restrict: [
+      { grant: '*', to: ['WorkerRole'] }
+    ]) as projection on ct.TimeEntry{
         tasks.task_ID as w_task,
         *,
 
     };
 
-    entity TasksEntity as projection on ct.Task;
+    entity TasksEntity @(restrict: [
+      { grant: 'READ', to: ['WorkerRole'] }
+    ]) as projection on ct.Task;
 
-    entity WorkerTask as projection on ct.WorkerTaskAssignment{
+    entity WorkerTask @(restrict: [
+      { grant: '*', to: ['WorkerRole'], where: 'worker_ID = $user.WorkerID' }
+    ]) as projection on ct.WorkerTaskAssignment{
         
         task.description as t_description,
         task.isBillable as t_billable,

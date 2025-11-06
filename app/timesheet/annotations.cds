@@ -218,9 +218,9 @@ annotate service.TimeEntryEntity with {
 };
 
 annotate service.TimeSheetEntity with {
-    worker @Common.ValueList : {
+    worker_ID @Common.ValueList : {
         $Type : 'Common.ValueListType',
-        CollectionPath : 'Worker',
+        CollectionPath : 'Workers',
         Parameters : [
             {
                 $Type : 'Common.ValueListParameterInOut',

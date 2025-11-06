@@ -2,54 +2,79 @@ using { com.contractor.timesheet as ct } from '../db/contractor-model';
 using { sap.common as cc } from '@sap/cds/common';
 
 
-service ManagerService @(path : 'Manager_Service') {
+service ManagerService @(path : 'Manager_Service', requires: 'authenticated-user') {
     entity Buyers @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['ProjectManagerRole'] }
+        ]
     )as projection on ct.Buyer;
     entity Projects @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['ProjectManagerRole'], where: 'project_manager_ID = $user.ManagerID' }
+        ]
     )as projection on ct.Project{
         *,
         positions
     };
-    entity ContractorRequests as projection on ct.ContractorRequest;
-    entity SelectedWorkers as projection on ct.ContractorProfile{
+    entity ContractorRequests @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.ContractorRequest;
+    entity SelectedWorkers @(restrict: [
+      { grant: 'READ', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.ContractorProfile{
         *,
     } where status = 'Selected';
 
-    entity ProjectManagers as projection on ct.ProjectManager;
-    // Supplier actions
-    action acceptRequest(requestID: UUID) returns String;
-    action ignoreRequest(requestID: UUID, reason: String) returns String;
+    entity ProjectManagers @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.ProjectManager;
 
-    // Manager actions
-    action approveContractorProfile(profileID: UUID) returns String;
-    action rejectContractorProfile(profileID: UUID) returns String;
 
     //entity TimesheetEntries as projection on ct.TimesheetEntry;
     
-    entity Positions as projection on ct.Positions_roles{
+    entity Positions @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'], where: 'project_manager_ID = $user.ManagerID' }
+    ]) as projection on ct.Positions_roles{
         *,
         tasks
     };
 
-    entity Contractor as projection on ct.Contractors;
+    entity Contractor @(restrict: [
+      { grant: 'READ', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.Contractors;
 
-    entity Currencies as projection on cc.Currencies;
+    entity Currencies @(restrict: [
+      { grant: 'READ', to: ['ProjectManagerRole'] }
+    ]) as projection on cc.Currencies;
     entity Suppliers @(
-        odata.draft.enabled : true
+        odata.draft.enabled : true,
+        restrict: [
+            { grant: '*', to: ['ProjectManagerRole'] }
+        ]
     ) as projection on ct.Supplier;
     
-    entity Workers as projection on ct.Worker;
+    entity Workers @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.Worker;
 
-    entity Tasks as projection on ct.Task{
+    entity Tasks @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.Task{
         *,
         assignments
     };
 
-    entity Timesheet as projection on ct.WorkerTimeSheet;
-    entity TimeEntry as projection on ct.TimeEntry;
+    entity Timesheet @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.WorkerTimeSheet;
+    entity TimeEntry @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.TimeEntry;
 
-    entity WorkerTaskAssignment as projection on ct.WorkerTaskAssignment;
+    entity WorkerTaskAssignment @(restrict: [
+      { grant: '*', to: ['ProjectManagerRole'] }
+    ]) as projection on ct.WorkerTaskAssignment;
 
 }

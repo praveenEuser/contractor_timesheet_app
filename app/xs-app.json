@@ -1,0 +1,77 @@
+{
+  "authenticationMethod": "route",
+  "sessionTimeout": 10,
+  "routes": [
+    {
+      "source": "^/admin_pages/(.*)$",
+      "target": "$1",
+      "localDir": "admin_pages",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": [
+        "$XSAPPNAME.AdminRole"
+      ]
+    },
+    {
+      "source": "^/admin_dashboard/(.*)$",
+      "target": "$1",
+      "localDir": "admin_dashboard/webapp",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": [
+        "$XSAPPNAME.AdminRole"
+      ]
+    },
+    {
+      "source": "^/buyer_dashboard/(.*)$",
+      "target": "$1",
+      "localDir": "buyer_dashboard/webapp",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": [
+        "$XSAPPNAME.BuyerRole"
+      ]
+    },
+    {
+      "source": "^/supplier_dashboard/(.*)$",
+      "target": "$1",
+      "localDir": "supplier_dashboard/webapp",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": [
+        "$XSAPPNAME.SupplierRole"
+      ]
+    },
+    {
+      "source": "^/project_manager_dashboard/(.*)$",
+      "target": "$1",
+      "localDir": "project_manager_dashboard/webapp",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": [
+        "$XSAPPNAME.ProjectManagerRole"
+      ]
+    },
+    {
+      "source": "^/timesheet/(.*)$",
+      "target": "$1",
+      "localDir": "timesheet/webapp",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": [
+        "$XSAPPNAME.WorkerRole"
+      ]
+    },
+    {
+      "source": "^/srv/(.*)$",
+      "target": "$1",
+      "destination": "srv-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    }
+  ],
+  "logout": {
+    "logoutEndpoint": "/my/logout",
+    "logoutPage": "https://www.google.com"
+  }
+}
