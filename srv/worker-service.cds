@@ -7,7 +7,14 @@ service WorkerService @(path: 'Timesheet_Service', requires: 'authenticated-user
     @readonly
     entity Workers @(restrict: [
       { grant: 'READ', to: ['WorkerRole'], where: 'ID = $user.WorkerID' }
-    ]) as projection on ct.Worker;
+    ]) as projection on ct.Worker{
+      contractorProfile.contractor.co_name as co_name,
+      *,
+    };
+
+    entity ContractorProfile as projection on ct.ContractorProfile;
+
+    entity Contractor as projection on ct.Contractors;
 
     // Expose timesheet entries for workers
     entity TimeSheetEntity @(
@@ -17,7 +24,7 @@ service WorkerService @(path: 'Timesheet_Service', requires: 'authenticated-user
         ]
     )as projection on ct.WorkerTimeSheet{
         @readonly rejectedreason,
-        @readonly worker_ID,
+        worker_ID,
         //@readonly totalhours,
         *,
     };

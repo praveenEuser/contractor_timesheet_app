@@ -172,6 +172,11 @@ annotate service.ContractorRequestEntity with @(
         },
         {
             $Type: 'UI.DataField',
+            Label:'Buyer ID',
+            Value : requestedBy_ID,
+        },
+        {
+            $Type: 'UI.DataField',
             Label: 'Role',
             Value : position.roles,
         },
@@ -311,7 +316,28 @@ annotate service.RequestSuppliers with {
             },
         ],
     }
-};  
+}; 
+
+annotate service.ContractorRequestEntity with {
+    requestedBy_ID @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'Buyers',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : buyer_ID,
+                ValueListProperty : 'ID',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'buyer_name',
+            },
+        ],
+    }
+};
+
+
+
    
 
 annotate service.Positions with {

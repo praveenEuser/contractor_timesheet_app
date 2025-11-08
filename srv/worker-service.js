@@ -5,7 +5,12 @@ module.exports = cds.service.impl(async function() {
   const { TimeSheetEntity, TimeEntryEntity, WorkerTimeSheet } = this.entities;
 
   // this.before('CREATE', 'TimeSheetEntity', (req) => {
-  //   req.data.workerID = req.user.attr.WorkerID;
+  //   const workerattr = req.user.attr.WorkerID;
+  //   try {
+  //     req.data.worker_ID = cds.parse.uuid(workerattr);
+  //   } catch (err) {
+  //     req.reject(400, `Invalid UUID format for WorkerID: ${workerattr}`);
+  //   } 
   // });
 
 //   this.before(['CREATE', 'UPDATE'], 'TimeEntryEntity', async req => {

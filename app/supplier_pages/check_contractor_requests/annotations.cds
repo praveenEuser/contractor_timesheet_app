@@ -61,7 +61,7 @@ annotate service.RequestSuppliers with @(
         {
         $Type: 'UI.CollectionFacet',
         Label: 'Project Info',
-        ID: 'ProjectSectoin',
+        ID: 'ProjectSection',
         Facets: [
             {
                 $Type: 'UI.ReferenceFacet',
@@ -197,11 +197,20 @@ annotate service.ContractorProfiles with @(
 );
 
 
-annotate service.ContractorProfiles with {
-    //ID @UI.Hidden;
-   supplier_ID @UI.Hidden;
-};
 
+annotate service.ContractorProfiles with {
+    supplier_ID @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'Supplier',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : supplier_ID,
+                ValueListProperty : 'ID',
+            },
+        ],
+    }
+};
 
 annotate service.ContractorProfiles with {
     contractor_ID @Common.ValueList : {

@@ -190,6 +190,25 @@ annotate service.TimeEntryEntity with @(
     ]
 );
 
+annotate service.TimeSheetEntity with {
+    worker_ID @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'Workers',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : worker_ID,
+                ValueListProperty : 'ID',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'co_name',
+            },
+            
+        ],
+    }
+};
+
 annotate service.TimeEntryEntity with {
     tasks_ID @Common.ValueList : {
         $Type : 'Common.ValueListType',
@@ -217,17 +236,7 @@ annotate service.TimeEntryEntity with {
     }
 };
 
-annotate service.TimeSheetEntity with {
-    worker_ID @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'Workers',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : worker_ID,
-                ValueListProperty : 'ID',
-            },
-        ],
-    }
-};
+
+
+
 

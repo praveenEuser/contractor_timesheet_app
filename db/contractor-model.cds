@@ -62,9 +62,7 @@ entity Project:cuid {
 entity ContractorRequest : cuid {
     requestedBy_ID: UUID;
     requestedBy : Association to Buyer on requestedBy.ID = requestedBy_ID;
-    project_ID: UUID;
     position_ID : UUID;
-    project           : Association to Project on project.ID = project_ID;
     position           : Association to Positions_roles on position_ID = $self.ID;
     //pos_detail: Association to Positions_roles;
     requiredSkills    : String(500);
