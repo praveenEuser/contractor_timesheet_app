@@ -132,12 +132,17 @@ entity Worker:cuid {
     
     @UI.Hidden : true
     supplier_ID: UUID @title : '{i18n>supplier_ID}';
+    @mandatory
     assignedProject_ID: UUID @title : '{i18n>assignedProject_ID}';
     contractorProfile_ID: UUID @title : '{i18n>contractorProfile_ID}';
+    @readonly
     assignedPosition_ID: UUID; // <-- the FK that links to Positions_roles
+
+    @mandatory                      // <-- Make ProjectManager mandatory
+    assigned_ProjectManager_ID: UUID;
     supplier: Association to Supplier on supplier.ID = supplier_ID @title : '{i18n>supplier}';
     assignedProject: Association to Project on assignedProject.ID = assignedProject_ID @title : '{i18n>assignedProject}';
-    assigned_ProjectManager: Association to ProjectManager;
+    assigned_ProjectManager: Association to ProjectManager on assigned_ProjectManager.ID = assigned_ProjectManager_ID;
     assignedPosition : Association to Positions_roles on assignedPosition.ID = assignedPosition_ID;
     contractorProfile: Association to ContractorProfile on contractorProfile.ID = contractorProfile_ID @title : '{i18n>contractorProfile}';
     timeSheets : Composition of many WorkerTimeSheet on timeSheets.worker_ID = $self.ID;
@@ -181,7 +186,9 @@ entity WorkerTimeSheet : cuid, managed {
     worker      : Association to Worker on worker.ID = worker_ID;
     weekStart   : Date;
     weekEnd     : Date;
-    totalhours : Decimal(4,2);
+    totalhours  : Decimal(4,2);
+    @readonly
+    bonus       : String(2000);
     status      : String enum { Pending; Approved; Rejected} default 'Pending' ;
     rejectedreason : String(2000);
     comments    : String(2000);
@@ -215,6 +222,7 @@ entity Task : cuid {
 }
 
 entity WorkerTaskAssignment : cuid {
+  @readonly
   task_ID : UUID;
   task : Association to Task on task.ID = task_ID;
 

@@ -215,7 +215,8 @@ annotate service.RequestSuppliers with @(
         {
             $Type : 'UI.DataField',
             Label: 'Status',
-            Value : status
+            Value : status,
+            Criticality : ColorCoding,
         },
     ],
 

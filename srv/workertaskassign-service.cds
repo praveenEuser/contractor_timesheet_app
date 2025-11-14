@@ -32,7 +32,7 @@ service WorkerAssign @(path : 'WorkerTastAssign_Service', requires: 'authenticat
     entity TaskAssignment @(restrict: [
       { grant: '*', to: ['WorkerRole'] }
     ]) as projection on ct.WorkerTaskAssignment{
-        worker.contractorProfile.contractor.co_name as co_name,
+        @readonly worker.contractorProfile.contractor.co_name as co_name,
         *,
     };
 

@@ -54,13 +54,35 @@ module.exports = cds.service.impl(async function() {
 
 // srv/manager-service.js or srv/buyer-service.js
         this.after('READ', 'Positions', each => {
-        switch (each.status) {
-            case 'Open':
-            each.ColorCoding = 3; // Green
-            break;
-            case 'Close':
-            each.ColorCoding = 1; // Red
-        };
+            switch (each.status) {
+                case 'Open':
+                each.ColorCoding = 3; // Green
+                break;
+                case 'Close':
+                each.ColorCoding = 1; // Red
+            };
+        });
+
+        this.on('READ', 'Currencies', () => {
+            return [
+            { code: 'USD', name: 'US Dollar' },
+            { code: 'EUR', name: 'Euro' },
+            { code: 'INR', name: 'Indian Rupee' },
+            // add more as needed
+            ];
+        });
+
+        this.after('READ', 'RequestSuppliers', each => {
+            switch (each.status) {
+                case 'Approved':
+                each.ColorCoding = 3; // Green
+                break;
+                case 'Pending':
+                each.ColorCoding = 2; // Yellow
+            };
+        });
+
+
 
         // this.after('UPDATE', 'Positions', async (req, result) => {
         //     // Find the position ID (from payload or params)
@@ -122,14 +144,4 @@ module.exports = cds.service.impl(async function() {
                 }).where({ ID: position.worker_ID });
             }
         });
-
-        
-
-
-
-
-
-    });
-
-
 });

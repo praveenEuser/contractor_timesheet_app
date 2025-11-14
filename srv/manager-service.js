@@ -24,13 +24,12 @@ module.exports = cds.service.impl(async function () {
     });
 
     this.on('READ', 'Currencies', () => {
-    return [
-      { code: 'USD', name: 'US Dollar' },
-      { code: 'EUR', name: 'Euro' },
-      { code: 'INR', name: 'Indian Rupee' },
-      // add more as needed
-    ];
-  });
+        return [
+        { code: 'USD', name: 'US Dollar' },
+        { code: 'EUR', name: 'Euro' },
+        { code: 'INR', name: 'Indian Rupee' },
+        ];
+    });
 
 
     this.after('READ', 'Positions', each => {

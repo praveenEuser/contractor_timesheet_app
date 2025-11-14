@@ -19,7 +19,7 @@ annotate service.Tasks with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            Label : 'Task Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
         {
@@ -43,6 +43,35 @@ annotate service.Tasks with @(
 );
 
 annotate service.TaskAssignment with @(
+    UI.FieldGroup #GeneratedGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Label : 'Worker ID',
+                Value : worker_ID,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Worker Name',
+                Value : co_name,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Task ID',
+                Value : task_ID,
+            },
+        ],
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'Task Assignment',
+            Target : '@UI.FieldGroup#GeneratedGroup',
+        },
+
+    ],
     UI.LineItem:[
         {
             $Type : 'UI.DataField',

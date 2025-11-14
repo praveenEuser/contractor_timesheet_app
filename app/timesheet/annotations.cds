@@ -27,6 +27,11 @@ annotate service.TimeSheetEntity with @(
             },
             {
                 $Type : 'UI.DataField',
+                Label : 'Bonus',
+                Value : bonus,
+            },
+            {
+                $Type : 'UI.DataField',
                 Label : 'status',
                 Value : status,
             },
@@ -76,6 +81,11 @@ annotate service.TimeSheetEntity with @(
             Value : totalhours,
         },
         {
+                $Type : 'UI.DataField',
+                Label : 'Bonus',
+                Value : bonus,
+        },
+        {
             $Type : 'UI.DataField',
             Label : 'status',
             Value : status,
@@ -113,13 +123,13 @@ annotate service.TimeEntryEntity with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Task ID',
+            Label : 'Task',
             Value : w_task
         },
         {
             $Type : 'UI.DataField',
             Label : 'Billable',
-            Value : tasks.t_billable
+            Value : billable
         },
         {
             $Type : 'UI.DataField',
@@ -179,7 +189,7 @@ annotate service.TimeEntryEntity with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Task ID',
+            Label : 'Task',
             Value : w_task
         },
         {
@@ -222,11 +232,11 @@ annotate service.TimeEntryEntity with {
             {
                 $Type : 'Common.ValueListParameterInOut',
                 LocalDataProperty : w_task,
-                ValueListProperty : 'task_ID',
+                ValueListProperty : 't_description',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 't_description',
+                ValueListProperty : 'task_ID',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',

@@ -193,8 +193,8 @@ annotate service.TimeEntry with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Task ID',
-            Value : tasks.task_ID
+            Label : 'Task',
+            Value : tasks.task.description
         },
         {
             $Type : 'UI.DataField',
@@ -255,8 +255,8 @@ annotate service.TimeEntry with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Task ID',
-            Value : tasks.task_ID
+            Label : 'Task',
+            Value : tasks.task.description
         },
         {
             $Type : 'UI.DataField',

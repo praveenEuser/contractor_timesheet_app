@@ -24,6 +24,8 @@ service WorkerService @(path: 'Timesheet_Service', requires: 'authenticated-user
         ]
     )as projection on ct.WorkerTimeSheet{
         @readonly rejectedreason,
+        @readonly status,
+        @readonly bonus,
         worker_ID,
         //@readonly totalhours,
         *,
@@ -41,7 +43,8 @@ service WorkerService @(path: 'Timesheet_Service', requires: 'authenticated-user
     entity TimeEntryEntity @(restrict: [
       { grant: '*', to: ['WorkerRole'] }
     ]) as projection on ct.TimeEntry{
-        tasks.task_ID as w_task,
+        @readonly tasks.task.description as w_task,
+        @readonly tasks.task.isBillable as billable,
         *,
 
     };
@@ -54,8 +57,8 @@ service WorkerService @(path: 'Timesheet_Service', requires: 'authenticated-user
       { grant: '*', to: ['WorkerRole'], where: 'worker_ID = $user.WorkerID' }
     ]) as projection on ct.WorkerTaskAssignment{
         
-        task.description as t_description,
-        task.isBillable as t_billable,
+        @readonly task.description as t_description,
+        @readonly task.isBillable as t_billable,
         *,
     };
 }

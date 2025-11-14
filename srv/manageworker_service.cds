@@ -62,6 +62,7 @@ service ManageWorkerService @(path : 'ManageWorker_Service',requires: 'authentic
     entity Tasks @(restrict: [
       { grant: '*', to: ['ProjectManagerRole'] }
     ]) as projection on ct.Task{
+        @readonly isBillable,
         *,
         assignments
     };
@@ -72,14 +73,22 @@ service ManageWorkerService @(path : 'ManageWorker_Service',requires: 'authentic
         @readonly worker_ID,
         @readonly weekStart,
         @readonly weekEnd,
+        @readonly totalhours,
         //@readonly comments,
         @readonly comments,
-
-        *,
+        *
     };
     entity TimeEntry @(restrict: [
       { grant: '*', to: ['ProjectManagerRole'] }
-    ]) as projection on ct.TimeEntry;
+    ]) as projection on ct.TimeEntry{
+      @readonly workDate,
+      @readonly tasks_ID,
+      @readonly timesheet_ID,
+      @readonly hours,
+      @readonly notes,
+      @readonly tasks.task.isBillable,
+      *
+    };
 
     entity WorkerTaskAssignment @(restrict: [
       { grant: '*', to: ['ProjectManagerRole'] }
