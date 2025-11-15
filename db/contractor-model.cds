@@ -75,9 +75,6 @@ entity ContractorRequest : cuid {
     requestsupplier : Composition of many RequestSuppliers on requestsupplier.c_request = $self;
 
     
-
-    // @UI.DataFieldForAction: true
-    // action Send() returns Boolean;
 }
 
 @assert.unique: {
@@ -102,22 +99,8 @@ entity RequestSuppliers : cuid, managed {
 
   responses     : Composition of many ContractorProfile on responses.request = $self;
 
-  
-
-  //unique uniqueSupplierPerRequest on (request_ID, supplier_ID);
 }
 
-
-    // Subtasks
-    // subtasks: Association to many Subtask on subtasks.contractorRequest.ID = ID;
-
-
-// entity Subtask:cuid {
-//     contractorRequest: Association to ContractorRequest;
-//     description: String;
-//     hoursEstimated: Decimal(5,2);
-//     status: String enum { Open; InProgress; Completed };
-// }
 
 entity ContractorProfile : cuid,managed{
     contractor_ID: UUID not null;
@@ -136,9 +119,9 @@ entity Worker:cuid {
     assignedProject_ID: UUID @title : '{i18n>assignedProject_ID}';
     contractorProfile_ID: UUID @title : '{i18n>contractorProfile_ID}';
     @readonly
-    assignedPosition_ID: UUID; // <-- the FK that links to Positions_roles
+    assignedPosition_ID: UUID; 
 
-    @mandatory                      // <-- Make ProjectManager mandatory
+    @mandatory                      
     assigned_ProjectManager_ID: UUID;
     supplier: Association to Supplier on supplier.ID = supplier_ID @title : '{i18n>supplier}';
     assignedProject: Association to Project on assignedProject.ID = assignedProject_ID @title : '{i18n>assignedProject}';
@@ -159,26 +142,6 @@ entity Contractors: cuid,managed{
     resume       : LargeBinary @Core.MediaType: 'application/pdf'; // no length limit
     resumeName   : String(255);
 }
-
-// entity TimesheetEntry:cuid{
-//     worker: Association to Worker;
-//     project: Association to Project;
-//     date: Date;
-//     hoursWorked: Decimal(5,2);
-//     status: String enum { Submitted; Approved; Rejected };
-//     percentComplete: Integer;
-//     supportDocument: LargeBinary @Core.MediaType: 'application/pdf';
-//     rejectionComment: String;  
-//     lastModified: Timestamp;
-
-//     // Actual cost for accounting
-//     costTaken: Decimal(10,2);
-
-//     // Virtual fields for project tracking
-//     // virtual actualCost: Decimal(10,2);    // hoursWorked * worker rate
-//     // virtual earnedValue: Decimal(10,2);   // (percentComplete/100) * plannedValue
-//     // virtual plannedValue: Decimal(10,2);  // project.plannedHours * project.hourlyRate
-// }
 
 
 entity WorkerTimeSheet : cuid, managed {
@@ -207,11 +170,6 @@ entity TimeEntry : cuid, managed {
     notes               : String(255);
 }
 
-
-// view TimeEntriesInWeek(weekStart: Date, weekEnd: Date) as select from TimeEntry
-// where workDate between :weekStart and :weekEnd;
-
-// Task entity (existing)
 entity Task : cuid {
     description         : String;
     isBillable          : Boolean;
